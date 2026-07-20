@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#0a0c10">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Roohi Patch Diagnostics"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" 
+        android:textColor="#58a6ff"/>
+
+    <TextView
+        android:id="@+id/tvNotificationStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notification Permission: Checking..."
+        android:layout_marginBottom="8dp" 
+        android:textColor="#c9d1d9"/>
+
+    <TextView
+        android:id="@+id/tvMicStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Microphone Status: Checking..."
+        android:layout_marginBottom="8dp" 
+        android:textColor="#c9d1d9"/>
+
+    <TextView
+        android:id="@+id/tvBatteryStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Battery Optimization: Checking..."
+        android:layout_marginBottom="16dp" 
+        android:textColor="#c9d1d9"/>
+        
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#30363d" android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tvWakeModelStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wake Word Model: Checking..."
+        android:layout_marginBottom="8dp" 
+        android:textColor="#c9d1d9"/>
+
+    <TextView
+        android:id="@+id/tvAuthModelStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Voice Auth Model: Checking..."
+        android:layout_marginBottom="8dp" 
+        android:textColor="#c9d1d9"/>
+
+    <TextView
+        android:id="@+id/tvDatabaseStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Database Ready: Checking..." 
+        android:layout_marginBottom="16dp"
+        android:textColor="#c9d1d9"/>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#30363d" android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tvDspStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Audio DSP Pipeline: Checking..."
+        android:layout_marginBottom="8dp" 
+        android:textColor="#c9d1d9"/>
+
+    <TextView
+        android:id="@+id/tvSpeechStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Speech Recognition: Checking..." 
+        android:layout_marginBottom="16dp"
+        android:textColor="#c9d1d9"/>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#30363d" android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tvConvActive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Conversation Active: Checking..."
+        android:layout_marginBottom="8dp" 
+        android:textColor="#c9d1d9"/>
+
+    <TextView
+        android:id="@+id/tvConvIntent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Current Intent: Checking..."
+        android:layout_marginBottom="8dp" 
+        android:textColor="#c9d1d9"/>
+
+    <TextView
+        android:id="@+id/tvConvContext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Context / Topic: Checking..." 
+        android:layout_marginBottom="8dp" 
+        android:textColor="#c9d1d9"/>
+
+    <TextView
+        android:id="@+id/tvConvHealth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Conversation Health: Checking..." 
+        android:layout_marginBottom="16dp"
+        android:textColor="#c9d1d9"/>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#30363d" android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tvCommandStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Command Execution: Checking..." 
+        android:layout_marginBottom="16dp" 
+        android:textColor="#c9d1d9"/>
+        
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#30363d" android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tvMemoryStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Memory Engine: Checking..." 
+        android:layout_marginBottom="16dp" 
+        android:textColor="#c9d1d9"/>
+        
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#30363d" android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tvIdentityStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Identity Engine: Checking..." 
+        android:textColor="#c9d1d9"/>
+
+</LinearLayout>
