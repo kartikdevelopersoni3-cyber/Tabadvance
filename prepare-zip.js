@@ -49,12 +49,17 @@ walk(androidAppDir, zip, 'android-app');
 const zipPath = path.join(publicDir, 'Roohi_Master_Package.zip');
 zip.writeZip(zipPath);
 
+const exportZipPath = path.join(publicDir, 'Roohi_Master_Export.zip');
+zip.writeZip(exportZipPath);
+
 const stats = fs.statSync(zipPath);
 const zipSize = (stats.size / 1024 / 1024).toFixed(2) + ' MB';
 
 console.log(JSON.stringify({
     zipPath,
+    exportZipPath,
     url: '/Roohi_Master_Package.zip',
+    exportUrl: '/Roohi_Master_Export.zip',
     fileCount,
     zipSize,
     missingFileCount,
