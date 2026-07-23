@@ -1,160 +1,289 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
+import React, { useState } from 'react';
+import { HeroSection } from './components/HeroSection';
+import { IntroSequence } from './components/IntroSequence';
+import { ActivationProgressModal } from './components/ActivationProgressModal';
+import { WelcomeModal } from './components/WelcomeModal';
+import { SetupWizard } from './components/SetupWizard';
+import { WorkspaceOS } from './components/WorkspaceOS';
+import { AIChatView } from './components/AIChatView';
+import { MemorySystemView } from './components/MemorySystemView';
+import { SettingsPanelView } from './components/SettingsPanelView';
+import { ModuleManagerView } from './components/ModuleManagerView';
+import { UserProfileView } from './components/UserProfileView';
+import { PwaInstallBanner } from './components/PwaInstallBanner';
+import { AppView, SetupState } from './types';
+import {
+  Layers,
+  Download,
+  Bot,
+  Database,
+  Cpu,
+  Settings,
+  User,
+  ShieldCheck,
+  FileArchive,
+  Layout,
+  Compass,
+  SlidersHorizontal
+} from 'lucide-react';
 
 export default function App() {
+  const [currentView, setCurrentView] = useState<AppView>('workspace');
+  const [isActivating, setIsActivating] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(false);
+
+  const [setupState, setSetupState] = useState<SetupState>({
+    language: 'en',
+    permissions: {
+      microphone: true,
+      storage: true,
+      notifications: true,
+      accessibility: false,
+      camera: false
+    },
+    aiMode: 'hybrid',
+    cloudConfig: {
+      provider: 'gemini',
+      apiKey: '',
+      localServerUrl: 'http://localhost:11434',
+      isConnected: true,
+      connectionStatus: 'success',
+      modelName: 'gemini-2.5-flash',
+      useGrounding: true
+    },
+    voiceSetup: {
+      wakeWord: 'Hey Roohi',
+      isEnrolled: true,
+      pitch: 1.0,
+      speed: 1.0,
+      tone: 'Balanced Warm'
+    },
+    workspacePrefs: {
+      theme: 'dark-luxury',
+      layout: 'balanced',
+      showQuickActions: true,
+      showMemoryLog: true,
+      showAudioWave: true,
+      showSystemMonitor: true,
+      soundNotifications: true
+    }
+  });
+
+  const handleStartActivation = () => {
+    setIsActivating(true);
+  };
+
+  const handleActivationComplete = () => {
+    setIsActivating(false);
+    setShowWelcome(true);
+  };
+
+  const handleBeginSetup = () => {
+    setShowWelcome(false);
+    setCurrentView('setup');
+  };
+
+  const handleWizardComplete = (finalConfig: SetupState) => {
+    setSetupState(finalConfig);
+    setCurrentView('workspace');
+  };
+
   return (
-    <div className="w-full h-screen bg-[#0a0c10] text-[#c9d1d9] font-sans flex flex-col overflow-hidden">
-      {/* Header Navigation */}
-      <header className="h-14 border-b border-[#30363d] bg-[#161b22] flex items-center justify-between px-6 shrink-0">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 text-[#58a6ff]">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-            </svg>
-            <span className="font-bold tracking-tight uppercase text-xs">Architect.OS</span>
+    <div className="min-h-screen bg-[#06080c] text-[#c9d1d9] font-sans flex flex-col justify-between selection:bg-blue-600 selection:text-white">
+      {/* Top Header Navigation Bar */}
+      <header className="h-16 border-b border-[#30363d] bg-[#0d1117]/90 backdrop-blur-md sticky top-0 z-40 px-4 sm:px-6 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div
+            onClick={() => setCurrentView('workspace')}
+            className="flex items-center gap-2 text-blue-400 font-bold cursor-pointer hover:opacity-90 transition-opacity"
+          >
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-600 p-0.5 flex items-center justify-center">
+              <div className="w-full h-full bg-[#0d1117] rounded-[10px] flex items-center justify-center">
+                <Layers className="w-4 h-4 text-blue-400" />
+              </div>
+            </div>
+            <span className="text-white text-base tracking-tight font-extrabold">Roohi.OS</span>
           </div>
-          <div className="h-4 w-px bg-[#30363d]"></div>
-          <div className="text-xs text-[#8b949e] font-medium">
-            <span className="text-[#58a6ff]">Project</span> / Tabtech / <span className="text-white">Roohi_Final</span>
+
+          <div className="hidden md:flex items-center gap-2 text-xs text-[#8b949e] font-mono border-l border-[#30363d] pl-3">
+            <span>Cloud Web App & PWA</span>
+            <span className="text-emerald-400 font-bold bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/40">
+              v1.0.4 Cloud
+            </span>
           </div>
         </div>
-        <div className="flex gap-3">
-          <div className="px-3 py-1 rounded bg-[#238636] text-white text-[10px] font-bold uppercase tracking-wider">Production Ready</div>
-          <div className="px-3 py-1 rounded border border-[#30363d] text-[#8b949e] text-[10px] font-bold">BUILD 1.0.4-STABLE</div>
+
+        {/* View Selection Tabs */}
+        <div className="flex items-center gap-1 overflow-x-auto max-w-[60vw] sm:max-w-none">
+          <button
+            onClick={() => setCurrentView('workspace')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+              currentView === 'workspace'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'text-[#8b949e] hover:text-white hover:bg-[#161b22]'
+            }`}
+          >
+            <Layout className="w-3.5 h-3.5" /> Workspace
+          </button>
+
+          <button
+            onClick={() => setCurrentView('chat')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+              currentView === 'chat'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'text-[#8b949e] hover:text-white hover:bg-[#161b22]'
+            }`}
+          >
+            <Bot className="w-3.5 h-3.5" /> AI Chat
+          </button>
+
+          <button
+            onClick={() => setCurrentView('memory')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+              currentView === 'memory'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'text-[#8b949e] hover:text-white hover:bg-[#161b22]'
+            }`}
+          >
+            <Database className="w-3.5 h-3.5" /> Memory
+          </button>
+
+          <button
+            onClick={() => setCurrentView('modules')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+              currentView === 'modules'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'text-[#8b949e] hover:text-white hover:bg-[#161b22]'
+            }`}
+          >
+            <Cpu className="w-3.5 h-3.5" /> Modules
+          </button>
+
+          <button
+            onClick={() => setCurrentView('auth')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+              currentView === 'auth'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'text-[#8b949e] hover:text-white hover:bg-[#161b22]'
+            }`}
+          >
+            <User className="w-3.5 h-3.5" /> Account
+          </button>
+
+          <button
+            onClick={() => setCurrentView('settings')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+              currentView === 'settings'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'text-[#8b949e] hover:text-white hover:bg-[#161b22]'
+            }`}
+          >
+            <Settings className="w-3.5 h-3.5" /> Settings
+          </button>
+
+          <button
+            onClick={() => setCurrentView('hero')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+              currentView === 'hero'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'text-[#8b949e] hover:text-white hover:bg-[#161b22]'
+            }`}
+          >
+            Overview
+          </button>
+
+          {/* Download Package Action */}
+          <button
+            onClick={handleStartActivation}
+            className="ml-2 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-extrabold text-xs shadow-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0"
+          >
+            <Download className="w-3.5 h-3.5" /> Activate
+          </button>
         </div>
       </header>
 
-      <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar: Project Structure */}
-        <aside className="w-64 border-r border-[#30363d] bg-[#0d1117] flex flex-col shrink-0 overflow-hidden">
-          <div className="p-4 border-b border-[#30363d] flex justify-between items-center">
-            <span className="text-[10px] uppercase font-bold text-[#8b949e] tracking-widest">File Explorer</span>
-            <span className="text-[10px] italic text-[#58a6ff]">Hilt Enabled</span>
-          </div>
-          <div className="flex-1 overflow-y-auto p-4 font-mono text-[11px] leading-relaxed">
-            <div className="text-[#8b949e] mb-1 italic">// Project Structure</div>
-            <div className="flex items-center gap-2 py-1 text-white">
-              <span className="opacity-40">▼</span> android-app/app/src/main/java
-            </div>
-            <div className="pl-4 border-l border-[#30363d] ml-1">
-              <div className="py-0.5 text-[#e6edf3]">↳ com.roohi.app</div>
-              <div className="pl-4 border-l border-[#30363d] ml-1">
-                <div className="py-0.5 flex items-center gap-2"><span className="text-[#79c0ff]">📁</span> coordination</div>
-                <div className="py-0.5 flex items-center gap-2"><span className="text-[#79c0ff]">📁</span> reasoning</div>
-                <div className="py-0.5 flex items-center gap-2"><span className="text-[#79c0ff]">📁</span> proactive</div>
-                <div className="py-0.5 flex items-center gap-2"><span className="text-[#79c0ff]">📁</span> evolution</div>
-                <div className="py-0.5 flex items-center gap-2"><span className="text-[#d2a8ff]">📁</span> workspace</div>
-              </div>
-            </div>
-            <div className="mt-4 text-[#8b949e] italic">// Configuration</div>
-            <div className="py-0.5 text-[#ff7b72] flex items-center gap-2 font-bold"><span>🐘</span> build.gradle.kts</div>
-            <div className="py-0.5 text-[#ff7b72] flex items-center gap-2"><span>🛡️</span> AndroidManifest.xml</div>
-          </div>
-        </aside>
+      {/* Main Body Content Container */}
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col justify-start">
+        {/* PWA Banner */}
+        <PwaInstallBanner />
 
-        {/* Main Editor: Source Code */}
-        <main className="flex-1 bg-[#0d1117] flex flex-col border-r border-[#30363d] overflow-hidden">
-          <div className="flex bg-[#161b22] border-b border-[#30363d]">
-            <div className="px-4 py-3 bg-[#0d1117] border-t-2 border-[#f78166] text-xs flex items-center gap-2">
-              <span className="text-[#79c0ff]">zip output</span> apk_download_ready.log
-            </div>
-          </div>
-          
-          <div className="flex-1 p-6 font-mono text-[13px] leading-6 overflow-hidden relative">
-            <div className="absolute left-2 top-6 text-[#484f58] text-right w-8 pointer-events-none select-none">
-              1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12
-            </div>
-            <div className="pl-10 h-full overflow-y-auto">
-              <div className="text-[#ff7b72]">EXPORT SYSTEM LOG</div>
-              <div className="h-4"></div>
-              <div className="text-[#e6edf3]">SUCCESS: Static Analysis Verified (100%)</div>
-              <div className="text-[#e6edf3]">SUCCESS: Architectures explicitly mapped</div>
-              <div className="text-[#e6edf3]">SUCCESS: Omega Self-Modification Engine securely validated</div>
-              <div className="h-4"></div>
-              <div className="text-[#d2a8ff]">ZIP Package Structure Created</div>
-              <div className="text-[#8b949e]">File Count: <span className="text-white">382</span></div>
-              <div className="text-[#8b949e]">ZIP Size: <span className="text-white">0.26 MB</span></div>
-              <div className="text-[#8b949e]">Missing Files Detected: <span className="text-[#7ee787]">0</span></div>
-              <div className="text-[#8b949e]">Build Readiness: <span className="text-[#ff7b72]">0% (APK Build Blocked by Environment, 100% Source Readiness)</span></div>
-              <div className="h-4"></div>
-              <div className="text-[#7ee787]">Physical Path: /public/Roohi_Master_Package.zip generated securely without assumptions.</div>
-            </div>
-          </div>
-          
-          <div className="h-32 border-t border-[#30363d] bg-[#010409] p-4 flex flex-col shrink-0">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-[#7ee787]">✔</span>
-              <span className="text-[10px] font-bold uppercase text-[#8b949e]">Build Console</span>
-            </div>
-            <div className="font-mono text-[11px] text-[#7ee787] overflow-y-auto">
-              &gt; Task checkDependencies UP-TO-DATE<br/>
-              &gt; Task generateRoohiMasterPackageZip SUCCESSFUL<br/>
-              &gt; Ready for download.
-            </div>
-          </div>
-        </main>
+        {currentView === 'hero' && (
+          <HeroSection
+            onStartActivation={handleStartActivation}
+            onOpenIntro={() => setCurrentView('intro')}
+          />
+        )}
 
-        {/* Right Sidebar: Docs & Specs */}
-        <aside className="w-80 bg-[#0d1117] flex flex-col shrink-0">
-          <div className="p-6 border-b border-[#30363d]">
-            <h2 className="text-white font-bold text-sm mb-1">Final Export Ready</h2>
-            <p className="text-xs text-[#8b949e]">Module A → Ω Verified</p>
-          </div>
-          
-          <div className="flex-1 p-6 space-y-6 overflow-y-auto">
-            <section>
-              <label className="text-[10px] font-bold text-[#8b949e] uppercase tracking-wider block mb-3">Download URL</label>
-              <div className="p-3 bg-[#161b22] border border-[#30363d] rounded text-[11px] font-mono leading-relaxed break-all">
-                <span className="text-[#d2a8ff]">/Roohi_Master_Package.zip</span>
-              </div>
-            </section>
+        {currentView === 'intro' && (
+          <IntroSequence
+            onStartActivation={handleStartActivation}
+            onSkipToHero={() => setCurrentView('hero')}
+          />
+        )}
 
-            <section>
-              <label className="text-[10px] font-bold text-[#8b949e] uppercase tracking-wider block mb-3">Metrics</label>
-              <div className="grid grid-cols-2 gap-2">
-                <div className="p-2 border border-[#30363d] rounded">
-                  <div className="text-[10px] text-[#8b949e] mb-1">Architecture</div>
-                  <div className="text-xs text-[#7ee787]">100% Pass</div>
-                </div>
-                <div className="p-2 border border-[#30363d] rounded">
-                  <div className="text-[10px] text-[#8b949e] mb-1">Missing Files</div>
-                  <div className="text-xs text-[#7ee787]">0</div>
-                </div>
-              </div>
-            </section>
-          </div>
+        {currentView === 'setup' && (
+          <SetupWizard onComplete={handleWizardComplete} />
+        )}
 
-          <div className="p-6 mt-auto border-t border-[#30363d] bg-[#161b22]">
-            <a 
-              href="/Roohi_Master_Package.zip" 
-              download="Roohi_Master_Package.zip"
-              className="flex items-center justify-center w-full py-2 bg-[#21262d] hover:bg-[#30363d] border border-[#30363d] rounded text-white text-xs font-bold transition-colors cursor-pointer"
-            >
-              DOWNLOAD SOURCE ZIP
-            </a>
-          </div>
-        </aside>
-      </div>
+        {currentView === 'workspace' && (
+          <WorkspaceOS
+            setupConfig={setupState}
+            onOpenSettings={() => setCurrentView('settings')}
+          />
+        )}
 
-      {/* Bottom Status Bar */}
-      <footer className="h-6 bg-[#005fb8] text-white flex items-center px-4 justify-between shrink-0">
-        <div className="flex items-center gap-4 text-[10px] font-bold">
-          <div className="flex items-center gap-1">
-            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-            </svg>
-            Kotlin 1.9.0
-          </div>
-          <div className="flex items-center gap-1">
-            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z" />
-            </svg>
-            Hilt v2.48
-          </div>
+        {currentView === 'chat' && (
+          <AIChatView
+            setupConfig={setupState}
+            onOpenSettings={() => setCurrentView('settings')}
+          />
+        )}
+
+        {currentView === 'memory' && <MemorySystemView />}
+
+        {currentView === 'modules' && <ModuleManagerView />}
+
+        {currentView === 'auth' && <UserProfileView />}
+
+        {currentView === 'settings' && (
+          <SettingsPanelView
+            setupConfig={setupState}
+            onSaveConfig={(updated) => setSetupState(updated)}
+          />
+        )}
+      </main>
+
+      {/* Active Modals */}
+      <ActivationProgressModal
+        isOpen={isActivating}
+        onComplete={handleActivationComplete}
+        onCancel={() => setIsActivating(false)}
+      />
+
+      <WelcomeModal
+        isOpen={showWelcome}
+        onBeginSetup={handleBeginSetup}
+      />
+
+      {/* Footer Status Bar */}
+      <footer className="border-t border-[#30363d] bg-[#0d1117] py-4 px-4 sm:px-6 text-xs text-[#8b949e] flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="flex items-center gap-4 font-mono text-[11px]">
+          <span className="flex items-center gap-1 text-emerald-400">
+            <ShieldCheck className="w-3.5 h-3.5" /> Roohi OS Layer Active
+          </span>
+          <span>•</span>
+          <a
+            href="/Roohi_VoltBuilder_Package.zip"
+            download="Roohi_VoltBuilder_Package.zip"
+            className="text-[#58a6ff] hover:underline flex items-center gap-1 font-bold"
+          >
+            <FileArchive className="w-3.5 h-3.5 text-blue-400" /> Roohi_VoltBuilder_Package.zip
+          </a>
         </div>
-        <div className="text-[10px] opacity-80 uppercase tracking-tighter">UTF-8 | Module_01_Architecture_Locked</div>
+
+        <div className="text-[11px] font-mono text-[#484f58]">
+          Module AI Assistant OS Layer • Production Cloud Web App & PWA
+        </div>
       </footer>
     </div>
   );
