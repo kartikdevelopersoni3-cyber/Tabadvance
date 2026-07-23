@@ -4,10 +4,10 @@ import AdmZip from 'adm-zip';
 
 const rootDir = process.cwd();
 const publicDir = path.join(rootDir, 'public');
+const exportsDir = path.join(rootDir, 'Exports');
 
-if (!fs.existsSync(publicDir)) {
-  fs.mkdirSync(publicDir, { recursive: true });
-}
+if (!fs.existsSync(publicDir)) fs.mkdirSync(publicDir, { recursive: true });
+if (!fs.existsSync(exportsDir)) fs.mkdirSync(exportsDir, { recursive: true });
 
 // 1. Create PROJECT_BUILD_STATUS.md
 const buildStatusPath = path.join(publicDir, 'PROJECT_BUILD_STATUS.md');
@@ -20,57 +20,73 @@ const buildStatusContent = `# Roohi AI Assistant OS Layer - Cloud Web App & PWA 
 - APK Build Status: 0% (Intentionally Bypassed - Cloud Web First Model)
 - Web App Readiness: 100% Production Ready
 `;
-
 fs.writeFileSync(buildStatusPath, buildStatusContent);
 
-let fileCount = 0;
-
-function walkDir(dir, zip, zipDir) {
+function addDirectoryToZip(dir, zip, zipDir, allowedExtensions = null) {
   if (!fs.existsSync(dir)) return;
   const items = fs.readdirSync(dir);
   for (const item of items) {
-    if (item === 'node_modules' || item === '.git' || item === 'dist') continue;
+    if (item === 'node_modules' || item === '.git' || item === 'dist' || item === 'Archive') continue;
     const fullPath = path.join(dir, item);
     const relativePath = zipDir ? zipDir + '/' + item : item;
 
     if (fs.statSync(fullPath).isDirectory()) {
-      walkDir(fullPath, zip, relativePath);
+      addDirectoryToZip(fullPath, zip, relativePath, allowedExtensions);
     } else {
-      // Avoid bundling previous large zip files inside the new zip
       if (item.endsWith('.zip')) continue;
+      if (allowedExtensions && !allowedExtensions.some(ext => item.endsWith(ext))) continue;
       zip.addLocalFile(fullPath, zipDir);
-      fileCount++;
     }
   }
 }
 
-// Build VoltBuilder & Cloud Source ZIPs
-const voltZip = new AdmZip();
-walkDir(rootDir, voltZip, '');
+// 1. Generate Roohi_AI_OS.zip (Core Web App & Main Repository)
+const coreZip = new AdmZip();
+addDirectoryToZip(path.join(rootDir, 'Core'), coreZip, 'Core');
+addDirectoryToZip(path.join(rootDir, 'src'), coreZip, 'src');
+addDirectoryToZip(path.join(rootDir, 'public'), coreZip, 'public');
+const coreFiles = ['package.json', 'vite.config.ts', 'tsconfig.json', 'index.html', 'config.xml', '.env.example', 'metadata.json', 'prepare-zip.js'];
+for (const file of coreFiles) {
+  const p = path.join(rootDir, file);
+  if (fs.existsSync(p)) coreZip.addLocalFile(p, '');
+}
 
-const exportZipPath = path.join(publicDir, 'Roohi_Master_Export.zip');
-voltZip.writeZip(exportZipPath);
+const coreZipPath = path.join(exportsDir, 'Roohi_AI_OS.zip');
+coreZip.writeZip(coreZipPath);
+coreZip.writeZip(path.join(publicDir, 'Roohi_AI_OS.zip'));
+coreZip.writeZip(path.join(publicDir, 'Roohi_Master_Export.zip'));
+coreZip.writeZip(path.join(publicDir, 'Roohi_VoltBuilder_Package.zip'));
 
-const voltPackagePath = path.join(publicDir, 'Roohi_VoltBuilder_Package.zip');
-voltZip.writeZip(voltPackagePath);
+// 2. Generate Update_Runtime.zip (Android Runtime Native Package)
+const runtimeZip = new AdmZip();
+const updatesPath = path.join(rootDir, 'Updates');
+if (fs.existsSync(updatesPath)) {
+  addDirectoryToZip(updatesPath, runtimeZip, 'Updates');
+}
+const runtimeZipPath = path.join(exportsDir, 'Update_Runtime.zip');
+runtimeZip.writeZip(runtimeZipPath);
+runtimeZip.writeZip(path.join(publicDir, 'Update_Runtime.zip'));
 
-const masterPackagePath = path.join(publicDir, 'Roohi_Master_Package.zip');
-voltZip.writeZip(masterPackagePath);
+// 3. Generate Documentation.zip (All Active Documentation)
+const docZip = new AdmZip();
+const docPath = path.join(rootDir, 'Documentation');
+if (fs.existsSync(docPath)) {
+  addDirectoryToZip(docPath, docZip, 'Documentation');
+}
+const docZipPath = path.join(exportsDir, 'Documentation.zip');
+docZip.writeZip(docZipPath);
+docZip.writeZip(path.join(publicDir, 'Documentation.zip'));
+docZip.writeZip(path.join(publicDir, 'Roohi_Master_Documentation.zip'));
 
-const stats = fs.statSync(exportZipPath);
-const zipSize = (stats.size / 1024 / 1024).toFixed(2) + ' MB';
+const coreStats = fs.statSync(coreZipPath);
+const runtimeStats = fs.statSync(runtimeZipPath);
+const docStats = fs.statSync(docZipPath);
 
 console.log(
   JSON.stringify({
-    zipFilename: 'Roohi_VoltBuilder_Package.zip',
-    exportZipFilename: 'Roohi_Master_Export.zip',
-    zipPath: voltPackagePath,
-    exportZipPath: exportZipPath,
-    url: '/Roohi_VoltBuilder_Package.zip',
-    exportUrl: '/Roohi_Master_Export.zip',
-    fileCount,
-    zipSize,
-    voltBuilderStatus: 'Compatible (config.xml + W3C Widget Package + Manifest)',
-    buildReadinessPercentage: '100% Cloud Web App & VoltBuilder Source Ready (No APK Built)'
+    coreZip: 'Roohi_AI_OS.zip (' + (coreStats.size / 1024 / 1024).toFixed(2) + ' MB)',
+    updateRuntimeZip: 'Update_Runtime.zip (' + (runtimeStats.size / 1024 / 1024).toFixed(2) + ' MB)',
+    documentationZip: 'Documentation.zip (' + (docStats.size / 1024 / 1024).toFixed(2) + ' MB)',
+    status: 'Consolidated Modular Repository Packages Built Successfully'
   })
 );
