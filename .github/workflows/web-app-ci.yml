@@ -1,0 +1,49 @@
+name: Cloud Web App & PWA CI/CD
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build-web:
+    name: Build Web App & Packages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Type Check & Verification
+        run: npx tsc --noEmit
+
+      - name: Build Web Application
+        run: npm run build
+
+      - name: Prepare Zip Package Deliverables
+        run: node prepare-zip.js
+
+      - name: Upload VoltBuilder Package Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Roohi_VoltBuilder_Package
+          path: public/Roohi_VoltBuilder_Package.zip
+          if-no-files-found: warn
+
+      - name: Upload Core Web App Zip Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Roohi_AI_OS_Web_Bundle
+          path: Exports/Roohi_AI_OS.zip
+          if-no-files-found: warn

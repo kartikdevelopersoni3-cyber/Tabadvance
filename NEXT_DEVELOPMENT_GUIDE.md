@@ -27,10 +27,11 @@ This guide outlines the future engineering milestones for the Roohi AI Assistant
 - Validate Porcupine wake-word listener background service lifecycle in `/Updates/app/src/main/java/com/roohi/app/wakeword/`.
 - Test Room DB & local HNSW vector store memory persistence on physical tablet hardware.
 
-## Phase 4 — APK/AAB Cloud Build Pipeline
-- Configure Codemagic YAML (`codemagic.yaml`) targeting the `/Updates` directory.
-- Establish GitHub Actions workflow for automated Android release builds.
-- Sign release binaries with production Android keystore.
+## Phase 4 — APK/AAB Cloud Build Pipeline (ESTABLISHED)
+- Configure Codemagic YAML (`codemagic.yaml`) targeting the `/Updates` directory for automated APK/AAB cloud builds.
+- Created GitHub Actions CI/CD workflows (`.github/workflows/android-debug-apk.yml` & `.github/workflows/web-app-ci.yml`) for automated `app-debug.apk` compilation on push.
+- Added `/scripts/deploy_to_github.sh` for one-command staging and pushing to any GitHub repository.
+- Sign release binaries with production Android keystore on tag creation.
 
 ## Phase 5 — Production Release & Deployment
 - Package and submit W3C Widget archive (`Roohi_VoltBuilder_Package.zip`) to VoltBuilder.
