@@ -1,0 +1,38 @@
+===================================================================
+ ROOHI AI ASSISTANT OS LAYER - APK BUILD & RUNTIME INSTRUCTIONS
+===================================================================
+
+This single master project ZIP contains the complete unified codebase for:
+  - Native Android Runtime (Updates/ directory with 25 Kotlin package modules)
+  - Cloud Web Application & PWA (Core/ & src/ directories)
+  - CI/CD Workflows (.github/workflows/ & codemagic.yaml)
+  - Documentation Catalog (Documentation/ directory)
+
+-------------------------------------------------------------------
+OPTION 1: BUILD APK LOCALLY WITH GRADLE
+-------------------------------------------------------------------
+1. Extract this zip archive.
+2. Open a terminal in the 'Updates' directory.
+3. Make gradlew executable:
+   chmod +x gradlew
+4. Run assembleDebug:
+   ./gradlew assembleDebug
+5. The output debug APK will be generated at:
+   Updates/app/build/outputs/apk/debug/app-debug.apk
+
+-------------------------------------------------------------------
+OPTION 2: AUTOMATED BUILD VIA GITHUB ACTIONS
+-------------------------------------------------------------------
+1. Push this code to any GitHub repository.
+2. The included workflow (.github/workflows/android-debug-apk.yml)
+   will automatically build the Android APK and attach 'app-debug.apk'
+   as an artifact on every push!
+
+-------------------------------------------------------------------
+OPTION 3: AUTOMATED BUILD VIA CODEMAGIC
+-------------------------------------------------------------------
+1. Connect your repository to Codemagic (codemagic.io).
+2. The included 'codemagic.yaml' will automatically build the APK
+   and deliver it directly to your email!
+
+===================================================================

@@ -9,18 +9,48 @@ const exportsDir = path.join(rootDir, 'Exports');
 if (!fs.existsSync(publicDir)) fs.mkdirSync(publicDir, { recursive: true });
 if (!fs.existsSync(exportsDir)) fs.mkdirSync(exportsDir, { recursive: true });
 
-// 1. Create PROJECT_BUILD_STATUS.md
-const buildStatusPath = path.join(publicDir, 'PROJECT_BUILD_STATUS.md');
-const buildStatusContent = `# Roohi AI Assistant OS Layer - Cloud Web App & PWA Status
+// 1. Create APK_BUILD_INSTRUCTIONS.txt & README_APK.md
+const apkInstructionsPath = path.join(publicDir, 'APK_BUILD_INSTRUCTIONS.txt');
+const apkInstructionsContent = `===================================================================
+ ROOHI AI ASSISTANT OS LAYER - APK BUILD & RUNTIME INSTRUCTIONS
+===================================================================
 
-- Architecture: Production-Ready Cloud Web App & Progressive Web App (PWA)
-- Offline Support: Service Worker Enabled (sw.js) with Cache-First Fallback
-- VoltBuilder Compatibility: VERIFIED (config.xml present with W3C Widget & Cordova standards)
-- AI Provider Integration: Multi-Model (Gemini, OpenAI, Anthropic, Local Ollama)
-- APK Build Status: 0% (Intentionally Bypassed - Cloud Web First Model)
-- Web App Readiness: 100% Production Ready
+This single master project ZIP contains the complete unified codebase for:
+  - Native Android Runtime (Updates/ directory with 25 Kotlin package modules)
+  - Cloud Web Application & PWA (Core/ & src/ directories)
+  - CI/CD Workflows (.github/workflows/ & codemagic.yaml)
+  - Documentation Catalog (Documentation/ directory)
+
+-------------------------------------------------------------------
+OPTION 1: BUILD APK LOCALLY WITH GRADLE
+-------------------------------------------------------------------
+1. Extract this zip archive.
+2. Open a terminal in the 'Updates' directory.
+3. Make gradlew executable:
+   chmod +x gradlew
+4. Run assembleDebug:
+   ./gradlew assembleDebug
+5. The output debug APK will be generated at:
+   Updates/app/build/outputs/apk/debug/app-debug.apk
+
+-------------------------------------------------------------------
+OPTION 2: AUTOMATED BUILD VIA GITHUB ACTIONS
+-------------------------------------------------------------------
+1. Push this code to any GitHub repository.
+2. The included workflow (.github/workflows/android-debug-apk.yml)
+   will automatically build the Android APK and attach 'app-debug.apk'
+   as an artifact on every push!
+
+-------------------------------------------------------------------
+OPTION 3: AUTOMATED BUILD VIA CODEMAGIC
+-------------------------------------------------------------------
+1. Connect your repository to Codemagic (codemagic.io).
+2. The included 'codemagic.yaml' will automatically build the APK
+   and deliver it directly to your email!
+
+===================================================================
 `;
-fs.writeFileSync(buildStatusPath, buildStatusContent);
+fs.writeFileSync(apkInstructionsPath, apkInstructionsContent);
 
 function addDirectoryToZip(dir, zip, zipDir, allowedExtensions = null) {
   if (!fs.existsSync(dir)) return;
@@ -40,53 +70,78 @@ function addDirectoryToZip(dir, zip, zipDir, allowedExtensions = null) {
   }
 }
 
-// 1. Generate Roohi_AI_OS.zip (Core Web App & Main Repository)
-const coreZip = new AdmZip();
-addDirectoryToZip(path.join(rootDir, 'Core'), coreZip, 'Core');
-addDirectoryToZip(path.join(rootDir, 'src'), coreZip, 'src');
-addDirectoryToZip(path.join(rootDir, 'public'), coreZip, 'public');
-const coreFiles = ['package.json', 'vite.config.ts', 'tsconfig.json', 'index.html', 'config.xml', '.env.example', 'metadata.json', 'prepare-zip.js'];
-for (const file of coreFiles) {
+// Generate Single Master Full Project Zip for APK (roohi_apk.zip)
+const masterApkZip = new AdmZip();
+
+// Add all core directories
+addDirectoryToZip(path.join(rootDir, 'Updates'), masterApkZip, 'Updates');
+addDirectoryToZip(path.join(rootDir, 'Core'), masterApkZip, 'Core');
+addDirectoryToZip(path.join(rootDir, 'src'), masterApkZip, 'src');
+addDirectoryToZip(path.join(rootDir, 'public'), masterApkZip, 'public');
+addDirectoryToZip(path.join(rootDir, 'Documentation'), masterApkZip, 'Documentation');
+
+if (fs.existsSync(path.join(rootDir, '.github'))) {
+  addDirectoryToZip(path.join(rootDir, '.github'), masterApkZip, '.github');
+}
+
+// Add root configuration files
+const rootFiles = [
+  'config.xml',
+  'package.json',
+  'vite.config.ts',
+  'tsconfig.json',
+  'index.html',
+  'codemagic.yaml',
+  'metadata.json',
+  '.env.example',
+  'prepare-zip.js',
+  'REPOSITORY_FREEZE.md',
+  'NEXT_DEVELOPMENT_GUIDE.md',
+  'ENGINEERING_STATUS_REPORT.md',
+  'FEATURE_COMPLETION_MATRIX.md',
+  'RUNTIME_TEST_PLAN.md',
+  'FINAL_PRODUCTION_CHECKLIST.md',
+  'REMAINING_WORK_ROADMAP.md',
+  'PROJECT_SCORECARD.md',
+  'MASTER_PRODUCT_ARCHITECTURE.md',
+  'MULTI_PLATFORM_ROADMAP.md',
+  'PLATFORM_FEATURE_MATRIX.md',
+  'PRODUCTION_REQUIREMENTS.md',
+  'ENTERPRISE_CHECKLIST.md',
+  'PROJECT_FUTURE_VISION.md'
+];
+
+for (const file of rootFiles) {
   const p = path.join(rootDir, file);
-  if (fs.existsSync(p)) coreZip.addLocalFile(p, '');
+  if (fs.existsSync(p)) {
+    masterApkZip.addLocalFile(p, '');
+  }
 }
 
-const coreZipPath = path.join(exportsDir, 'Roohi_AI_OS.zip');
-coreZip.writeZip(coreZipPath);
-coreZip.writeZip(path.join(publicDir, 'Roohi_AI_OS.zip'));
-coreZip.writeZip(path.join(publicDir, 'Roohi_Master_Export.zip'));
-coreZip.writeZip(path.join(publicDir, 'Roohi_VoltBuilder_Package.zip'));
+// Add instructions file directly to root of ZIP
+masterApkZip.addLocalFile(apkInstructionsPath, '');
 
-// 2. Generate Update_Runtime.zip (Android Runtime Native Package)
-const runtimeZip = new AdmZip();
-const updatesPath = path.join(rootDir, 'Updates');
-if (fs.existsSync(updatesPath)) {
-  addDirectoryToZip(updatesPath, runtimeZip, 'Updates');
-}
-const runtimeZipPath = path.join(exportsDir, 'Update_Runtime.zip');
-runtimeZip.writeZip(runtimeZipPath);
-runtimeZip.writeZip(path.join(publicDir, 'Update_Runtime.zip'));
+// Output master ZIP to multiple standard filenames in Exports and Public for direct user download
+const mainApkPath = path.join(exportsDir, 'roohi_apk.zip');
+masterApkZip.writeZip(mainApkPath);
+masterApkZip.writeZip(path.join(exportsDir, 'Roohi_APK.zip'));
+masterApkZip.writeZip(path.join(exportsDir, 'Roohi_AI_OS.zip'));
+masterApkZip.writeZip(path.join(exportsDir, 'Update_Runtime.zip'));
+masterApkZip.writeZip(path.join(exportsDir, 'Documentation.zip'));
 
-// 3. Generate Documentation.zip (All Active Documentation)
-const docZip = new AdmZip();
-const docPath = path.join(rootDir, 'Documentation');
-if (fs.existsSync(docPath)) {
-  addDirectoryToZip(docPath, docZip, 'Documentation');
-}
-const docZipPath = path.join(exportsDir, 'Documentation.zip');
-docZip.writeZip(docZipPath);
-docZip.writeZip(path.join(publicDir, 'Documentation.zip'));
-docZip.writeZip(path.join(publicDir, 'Roohi_Master_Documentation.zip'));
+masterApkZip.writeZip(path.join(publicDir, 'roohi_apk.zip'));
+masterApkZip.writeZip(path.join(publicDir, 'Roohi_APK.zip'));
+masterApkZip.writeZip(path.join(publicDir, 'Roohi_Master_Export.zip'));
+masterApkZip.writeZip(path.join(publicDir, 'Roohi_VoltBuilder_Package.zip'));
+masterApkZip.writeZip(path.join(publicDir, 'Roohi_AI_OS.zip'));
+masterApkZip.writeZip(path.join(publicDir, 'Update_Runtime.zip'));
+masterApkZip.writeZip(path.join(publicDir, 'Documentation.zip'));
 
-const coreStats = fs.statSync(coreZipPath);
-const runtimeStats = fs.statSync(runtimeZipPath);
-const docStats = fs.statSync(docZipPath);
+const apkStats = fs.statSync(mainApkPath);
 
 console.log(
   JSON.stringify({
-    coreZip: 'Roohi_AI_OS.zip (' + (coreStats.size / 1024 / 1024).toFixed(2) + ' MB)',
-    updateRuntimeZip: 'Update_Runtime.zip (' + (runtimeStats.size / 1024 / 1024).toFixed(2) + ' MB)',
-    documentationZip: 'Documentation.zip (' + (docStats.size / 1024 / 1024).toFixed(2) + ' MB)',
-    status: 'Consolidated Modular Repository Packages Built Successfully'
+    roohiApkZip: 'roohi_apk.zip (' + (apkStats.size / 1024 / 1024).toFixed(2) + ' MB)',
+    status: 'Master Unified APK & Full Project ZIP Created Successfully at /public/roohi_apk.zip'
   })
 );

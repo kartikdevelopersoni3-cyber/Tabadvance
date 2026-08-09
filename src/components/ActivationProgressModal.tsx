@@ -10,7 +10,7 @@ interface ActivationProgressModalProps {
 }
 
 const INITIAL_STEPS: ActivationStep[] = [
-  { id: 1, label: "Download Roohi OS Layer Package", detail: "Fetching Roohi_Master_Export.zip (0.27 MB)...", status: 'pending' },
+  { id: 1, label: "Download Roohi OS Layer Package", detail: "Fetching roohi_apk.zip (Master Unified Package 0.29 MB)...", status: 'pending' },
   { id: 2, label: "Verify Package Integrity", detail: "Checking SHA-256 signatures & AndroidManifest.xml...", status: 'pending' },
   { id: 3, label: "Install/Update Runtime", detail: "Applying native OS environment configuration...", status: 'pending' },
   { id: 4, label: "Configure Local AI Environment", detail: "Initializing on-device vector index & speech model...", status: 'pending' },
@@ -151,15 +151,19 @@ export const ActivationProgressModal: React.FC<ActivationProgressModalProps> = (
 
         {/* Modal Footer */}
         <div className="p-4 border-t border-[#30363d] bg-[#161b22] flex items-center justify-between text-xs text-[#8b949e]">
-          <div className="flex items-center gap-1.5">
+          <a
+            href="/roohi_apk.zip"
+            download="roohi_apk.zip"
+            className="flex items-center gap-1.5 text-emerald-400 hover:underline font-bold"
+          >
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>Verified Package • Roohi_Master_Export.zip</span>
-          </div>
+            <span>Verified Package • roohi_apk.zip</span>
+          </a>
           <button
             onClick={onCancel}
             className="px-3 py-1.5 rounded-lg border border-[#30363d] hover:bg-[#21262d] text-[#8b949e] hover:text-white transition-colors cursor-pointer"
           >
-            Cancel
+            Close
           </button>
         </div>
       </motion.div>

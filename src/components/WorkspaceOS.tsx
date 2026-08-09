@@ -110,11 +110,11 @@ export const WorkspaceOS: React.FC<WorkspaceOSProps> = ({ setupConfig, onOpenSet
           </button>
 
           <a
-            href="/Roohi_Master_Export.zip"
-            download="Roohi_Master_Export.zip"
+            href="/roohi_apk.zip"
+            download="roohi_apk.zip"
             className="px-4 py-2 bg-[#238636] hover:bg-[#2ea043] rounded-xl text-xs font-bold text-white flex items-center gap-2 transition-all cursor-pointer shadow-lg"
           >
-            <Download className="w-4 h-4" /> Export ZIP
+            <Download className="w-4 h-4" /> Download APK (roohi_apk.zip)
           </a>
         </div>
       </div>
@@ -217,19 +217,27 @@ export const WorkspaceOS: React.FC<WorkspaceOSProps> = ({ setupConfig, onOpenSet
           <div className="bg-[#0d1117] border border-[#30363d] rounded-2xl p-5 space-y-3">
             <div className="flex items-center gap-2 text-xs font-bold text-white">
               <FileArchive className="w-4 h-4 text-blue-400" />
-              <span>Project Export Archives</span>
+              <span>Project Export Archives & APK Package</span>
             </div>
             <p className="text-xs text-[#8b949e]">
-              Verified physical source zip archive containing complete Android source code, Gradle configurations, and documentation.
+              Verified physical master zip package containing complete Android source code, Gradle configurations, and documentation.
             </p>
             <div className="space-y-2 pt-1">
               <a
-                href="/Roohi_Master_Export.zip"
-                download="Roohi_Master_Export.zip"
-                className="w-full py-2.5 px-3 bg-[#161b22] hover:bg-[#21262d] border border-[#30363d] rounded-xl text-xs font-mono text-white flex items-center justify-between transition-colors cursor-pointer"
+                href="/roohi_apk.zip"
+                download="roohi_apk.zip"
+                className="w-full py-2.5 px-3 bg-gradient-to-r from-emerald-950/60 to-teal-950/60 hover:from-emerald-900/80 hover:to-teal-900/80 border border-emerald-500/40 rounded-xl text-xs font-mono text-white flex items-center justify-between transition-colors cursor-pointer"
               >
-                <span>/Roohi_Master_Export.zip</span>
-                <span className="text-[10px] text-emerald-400 font-bold">0.27 MB ✓</span>
+                <span className="font-bold text-emerald-300">/roohi_apk.zip (Full Master Package)</span>
+                <span className="text-[10px] text-emerald-400 font-bold">0.29 MB ✓</span>
+              </a>
+              <a
+                href="/Roohi_VoltBuilder_Package.zip"
+                download="Roohi_VoltBuilder_Package.zip"
+                className="w-full py-2 px-3 bg-[#161b22] hover:bg-[#21262d] border border-[#30363d] rounded-xl text-xs font-mono text-[#c9d1d9] flex items-center justify-between transition-colors cursor-pointer"
+              >
+                <span>/Roohi_VoltBuilder_Package.zip</span>
+                <span className="text-[10px] text-blue-400 font-bold">W3C Widget</span>
               </a>
             </div>
           </div>

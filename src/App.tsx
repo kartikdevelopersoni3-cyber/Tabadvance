@@ -192,12 +192,20 @@ export default function App() {
             Overview
           </button>
 
-          {/* Download Package Action */}
+          {/* Download APK Action */}
+          <a
+            href="/roohi_apk.zip"
+            download="roohi_apk.zip"
+            className="ml-2 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-600 hover:from-emerald-400 hover:to-blue-500 text-white font-extrabold text-xs shadow-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0"
+          >
+            <Download className="w-3.5 h-3.5" /> Download APK (ZIP)
+          </a>
+
           <button
             onClick={handleStartActivation}
-            className="ml-2 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-extrabold text-xs shadow-lg flex items-center gap-1.5 transition-all cursor-pointer shrink-0"
+            className="px-3 py-1.5 rounded-xl bg-[#161b22] hover:bg-[#21262d] border border-[#30363d] text-white font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer shrink-0"
           >
-            <Download className="w-3.5 h-3.5" /> Activate
+            Activate
           </button>
         </div>
       </header>
@@ -267,10 +275,18 @@ export default function App() {
 
       {/* Footer Status Bar */}
       <footer className="border-t border-[#30363d] bg-[#0d1117] py-4 px-4 sm:px-6 text-xs text-[#8b949e] flex flex-col sm:flex-row items-center justify-between gap-3">
-        <div className="flex items-center gap-4 font-mono text-[11px]">
-          <span className="flex items-center gap-1 text-emerald-400">
+        <div className="flex flex-wrap items-center gap-3 font-mono text-[11px]">
+          <span className="flex items-center gap-1 text-emerald-400 font-bold">
             <ShieldCheck className="w-3.5 h-3.5" /> Roohi OS Layer Active
           </span>
+          <span>•</span>
+          <a
+            href="/roohi_apk.zip"
+            download="roohi_apk.zip"
+            className="text-emerald-400 hover:underline flex items-center gap-1 font-bold"
+          >
+            <Download className="w-3.5 h-3.5 text-emerald-400" /> roohi_apk.zip (Full Master Package)
+          </a>
           <span>•</span>
           <a
             href="/Roohi_VoltBuilder_Package.zip"

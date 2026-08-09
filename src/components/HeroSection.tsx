@@ -34,19 +34,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStartActivation, onO
 
           {/* Primary Action Button */}
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={onStartActivation}
+            <a
+              href="/roohi_apk.zip"
+              download="roohi_apk.zip"
               className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-600 hover:from-emerald-400 hover:to-blue-500 text-white font-extrabold text-base shadow-2xl flex items-center justify-center gap-3 transition-all cursor-pointer transform hover:scale-[1.02] active:scale-[0.98] group"
             >
               <Download className="w-5 h-5 group-hover:translate-y-0.5 transition-transform" />
-              Download & Activate
-            </button>
+              Download Roohi APK Package (roohi_apk.zip)
+            </a>
 
             <button
-              onClick={onOpenIntro}
+              onClick={onStartActivation}
               className="w-full sm:w-auto px-6 py-4 rounded-2xl bg-[#161b22] hover:bg-[#21262d] border border-[#30363d] text-[#c9d1d9] font-bold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer"
             >
-              View Intro Tour <ArrowRight className="w-4 h-4" />
+              Activate Wizard <ArrowRight className="w-4 h-4" />
             </button>
           </div>
 
@@ -101,11 +102,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStartActivation, onO
           </p>
           <div className="pt-2 flex items-center gap-3">
             <a
-              href="/Roohi_Master_Export.zip"
-              download="Roohi_Master_Export.zip"
+              href="/roohi_apk.zip"
+              download="roohi_apk.zip"
               className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-amber-300 hover:underline cursor-pointer"
             >
-              <FileArchive className="w-3.5 h-3.5" /> Download Physical Source Export (Roohi_Master_Export.zip)
+              <FileArchive className="w-3.5 h-3.5" /> Download Full APK & Project Source Package (roohi_apk.zip)
             </a>
           </div>
         </div>
