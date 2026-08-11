@@ -78,13 +78,13 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
   });
 
   const handleTestConnection = () => {
-    setSetupState(prev => ({
+    setSetupState((prev: SetupState) => ({
       ...prev,
       cloudConfig: { ...prev.cloudConfig, connectionStatus: 'testing' }
     }));
 
     setTimeout(() => {
-      setSetupState(prev => ({
+      setSetupState((prev: SetupState) => ({
         ...prev,
         cloudConfig: {
           ...prev.cloudConfig,
@@ -100,7 +100,7 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
     setTimeout(() => {
       setIsRecordingVoice(false);
       setVoiceRecordedSuccess(true);
-      setSetupState(prev => ({
+      setSetupState((prev: SetupState) => ({
         ...prev,
         voiceSetup: { ...prev.voiceSetup, isEnrolled: true }
       }));
@@ -109,7 +109,7 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
 
   const handleNext = () => {
     if (currentStep < 7) {
-      setCurrentStep(prev => prev + 1);
+      setCurrentStep((prev: number) => prev + 1);
     } else {
       onComplete(setupState);
     }
@@ -117,7 +117,7 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
 
   const handlePrev = () => {
     if (currentStep > 1) {
-      setCurrentStep(prev => prev - 1);
+      setCurrentStep((prev: number) => prev - 1);
     }
   };
 
@@ -186,7 +186,7 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
                 {LANGUAGES.map(lang => (
                   <button
                     key={lang.code}
-                    onClick={() => setSetupState(prev => ({ ...prev, language: lang.code }))}
+                    onClick={() => setSetupState((prev: SetupState) => ({ ...prev, language: lang.code }))}
                     className={`p-4 rounded-xl border text-left flex items-center justify-between transition-all cursor-pointer ${
                       setupState.language === lang.code
                         ? 'bg-blue-950/40 border-blue-500 text-white shadow-lg'
@@ -253,7 +253,7 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
 
                       <button
                         onClick={() =>
-                          setSetupState(prev => ({
+                          setSetupState((prev: SetupState) => ({
                             ...prev,
                             permissions: {
                               ...prev.permissions,
@@ -321,7 +321,7 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
                 ].map(mode => (
                   <button
                     key={mode.id}
-                    onClick={() => setSetupState(prev => ({ ...prev, aiMode: mode.id as AIMode }))}
+                    onClick={() => setSetupState((prev: SetupState) => ({ ...prev, aiMode: mode.id as AIMode }))}
                     className={`p-5 rounded-2xl border text-left flex flex-col justify-between transition-all cursor-pointer ${
                       setupState.aiMode === mode.id
                         ? 'bg-purple-950/30 border-purple-500 shadow-xl'
@@ -381,7 +381,7 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
                   <button
                     key={prov.id}
                     onClick={() =>
-                      setSetupState(prev => ({
+                      setSetupState((prev: SetupState) => ({
                         ...prev,
                         cloudConfig: { ...prev.cloudConfig, provider: prov.id as AIProvider }
                       }))
@@ -406,7 +406,7 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
                       type="text"
                       value={setupState.cloudConfig.localServerUrl}
                       onChange={e =>
-                        setSetupState(prev => ({
+                        setSetupState((prev: SetupState) => ({
                           ...prev,
                           cloudConfig: { ...prev.cloudConfig, localServerUrl: e.target.value }
                         }))
@@ -424,7 +424,7 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
                       type="password"
                       value={setupState.cloudConfig.apiKey}
                       onChange={e =>
-                        setSetupState(prev => ({
+                        setSetupState((prev: SetupState) => ({
                           ...prev,
                           cloudConfig: { ...prev.cloudConfig, apiKey: e.target.value }
                         }))
@@ -493,7 +493,7 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
                     <button
                       key={word}
                       onClick={() =>
-                        setSetupState(prev => ({
+                        setSetupState((prev: SetupState) => ({
                           ...prev,
                           voiceSetup: { ...prev.voiceSetup, wakeWord: word }
                         }))
@@ -577,7 +577,7 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
                       <button
                         key={t.id}
                         onClick={() =>
-                          setSetupState(prev => ({
+                          setSetupState((prev: SetupState) => ({
                             ...prev,
                             workspacePrefs: { ...prev.workspacePrefs, theme: t.id as any }
                           }))
@@ -608,7 +608,7 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
                       <button
                         key={w.key}
                         onClick={() =>
-                          setSetupState(prev => ({
+                          setSetupState((prev: SetupState) => ({
                             ...prev,
                             workspacePrefs: {
                               ...prev.workspacePrefs,

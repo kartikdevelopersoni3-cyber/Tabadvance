@@ -1,28 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Roohi AI Assistant OS Layer</title>
-    <meta name="description" content="Production-ready Cloud Web App & PWA for Roohi AI Assistant OS Layer." />
-    <meta name="theme-color" content="#0d1117" />
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="apple-touch-icon" href="/pwa-192x192.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Updates Dashboard</title>
   </head>
-  <body class="bg-[#06080c] text-white selection:bg-blue-600 selection:text-white">
+  <body class="bg-slate-900 text-slate-100 min-h-screen">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').then(reg => {
-            console.log('Roohi OS Service Worker registered:', reg.scope);
-          }).catch(err => {
-            console.warn('Service Worker registration skipped/failed:', err);
-          });
-        });
-      }
-    </script>
   </body>
 </html>
-

@@ -69,7 +69,7 @@ export const SettingsPanelView: React.FC<SettingsPanelViewProps> = ({ setupConfi
             <select
               value={config.cloudConfig.provider}
               onChange={(e) =>
-                setConfig((prev) => ({
+                setConfig((prev: SetupState) => ({
                   ...prev,
                   cloudConfig: { ...prev.cloudConfig, provider: e.target.value as AIProvider }
                 }))
@@ -90,7 +90,7 @@ export const SettingsPanelView: React.FC<SettingsPanelViewProps> = ({ setupConfi
               type="text"
               value={config.cloudConfig.modelName || ''}
               onChange={(e) =>
-                setConfig((prev) => ({
+                setConfig((prev: SetupState) => ({
                   ...prev,
                   cloudConfig: { ...prev.cloudConfig, modelName: e.target.value }
                 }))
@@ -123,7 +123,7 @@ export const SettingsPanelView: React.FC<SettingsPanelViewProps> = ({ setupConfi
               type={showKey ? 'text' : 'password'}
               value={config.cloudConfig.apiKey}
               onChange={(e) =>
-                setConfig((prev) => ({
+                setConfig((prev: SetupState) => ({
                   ...prev,
                   cloudConfig: { ...prev.cloudConfig, apiKey: e.target.value }
                 }))
@@ -144,7 +144,7 @@ export const SettingsPanelView: React.FC<SettingsPanelViewProps> = ({ setupConfi
                 type="text"
                 value={config.cloudConfig.localServerUrl}
                 onChange={(e) =>
-                  setConfig((prev) => ({
+                  setConfig((prev: SetupState) => ({
                     ...prev,
                     cloudConfig: { ...prev.cloudConfig, localServerUrl: e.target.value }
                   }))
@@ -187,7 +187,7 @@ export const SettingsPanelView: React.FC<SettingsPanelViewProps> = ({ setupConfi
             {(['hybrid', 'cloud', 'offline'] as AIMode[]).map((mode) => (
               <label
                 key={mode}
-                onClick={() => setConfig((prev) => ({ ...prev, aiMode: mode }))}
+                onClick={() => setConfig((prev: SetupState) => ({ ...prev, aiMode: mode }))}
                 className={`p-3 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${
                   config.aiMode === mode
                     ? 'bg-blue-600/10 border-blue-500 text-white'
@@ -227,7 +227,7 @@ export const SettingsPanelView: React.FC<SettingsPanelViewProps> = ({ setupConfi
                 type="text"
                 value={config.voiceSetup.wakeWord}
                 onChange={(e) =>
-                  setConfig((prev) => ({
+                  setConfig((prev: SetupState) => ({
                     ...prev,
                     voiceSetup: { ...prev.voiceSetup, wakeWord: e.target.value }
                   }))

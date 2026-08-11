@@ -16,7 +16,7 @@ export const UserProfileView: React.FC = () => {
     setIsSyncing(true);
     setTimeout(() => {
       setIsSyncing(false);
-      setProfile(prev => ({
+      setProfile((prev: UserProfile) => ({
         ...prev,
         lastSyncedAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       }));

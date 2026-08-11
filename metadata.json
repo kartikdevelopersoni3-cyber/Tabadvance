@@ -1,6 +1,6 @@
 {
-  "name": "Roohi AI Tablet Assistant",
-  "description": "Roohi is a personal AI assistant designed to transform an Android tablet into an AI-powered device. Core System Foundation module.",
+  "name": "Updates",
+  "description": "System & Android Update Management Dashboard",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
