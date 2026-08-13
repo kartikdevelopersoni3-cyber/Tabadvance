@@ -178,10 +178,26 @@ export default function App() {
           </div>
 
           <div className="flex items-center space-x-3">
+            <a
+              href="/Roohi_APK.zip"
+              download="Roohi_APK.zip"
+              className="inline-flex items-center space-x-2 px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition shadow-lg shadow-emerald-600/20"
+            >
+              <Download className="w-4 h-4" />
+              <span>Download APK Package</span>
+            </a>
+            <a
+              href="/Roohi_PWA.zip"
+              download="Roohi_PWA.zip"
+              className="inline-flex items-center space-x-2 px-3.5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition shadow-lg shadow-indigo-600/20"
+            >
+              <Download className="w-4 h-4" />
+              <span>Download PWA Package</span>
+            </a>
             <button
               onClick={handleTriggerBuild}
               disabled={isBuilding}
-              className="inline-flex items-center space-x-2 px-3.5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium transition shadow-lg shadow-indigo-600/20 disabled:opacity-50"
+              className="inline-flex items-center space-x-2 px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-sm font-medium transition disabled:opacity-50"
             >
               <RefreshCw className={`w-4 h-4 ${isBuilding ? 'animate-spin' : ''}`} />
               <span>{isBuilding ? 'Building APK...' : 'Trigger Build'}</span>
@@ -351,9 +367,20 @@ export default function App() {
                       SHA256: {rel.checksum}
                     </div>
                     <div className="flex items-center space-x-2">
-                      <button className="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium transition flex items-center gap-1">
-                        <Download className="w-3.5 h-3.5" /> APK Artifact
-                      </button>
+                      <a
+                        href="/Roohi_APK.zip"
+                        download="Roohi_APK.zip"
+                        className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition flex items-center gap-1.5 shadow-md shadow-emerald-600/20"
+                      >
+                        <Download className="w-3.5 h-3.5" /> Download APK Package
+                      </a>
+                      <a
+                        href="/Roohi_PWA.zip"
+                        download="Roohi_PWA.zip"
+                        className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs font-medium transition flex items-center gap-1.5"
+                      >
+                        <Download className="w-3.5 h-3.5" /> PWA Package
+                      </a>
                     </div>
                   </div>
                 </motion.div>
