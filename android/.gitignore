@@ -1,0 +1,25 @@
+# Android
+*.apk
+*.ap_
+*.dex
+*.class
+.DS_Store
+/bin
+/gen
+/out
+build/
+.gradle
+.idea
+*.iml
+*.log
+*.swp
+*.swo
+*~
+.classpath
+.project
+.settings
+.gradle
+*.jar
+*.so
+*.dylib
+*.dll
