@@ -64,13 +64,13 @@ export const MemorySystemView: React.FC = () => {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-xl font-bold text-white">Local & Cloud Memory Index</h2>
+              <h2 className="text-xl font-bold text-white">Local Memory Store [DEMO / SIMULATION]</h2>
               <span className="px-2 py-0.5 rounded bg-purple-950/60 border border-purple-800/40 text-purple-300 text-[10px] font-mono font-bold uppercase">
-                Vector HNSW + Key-Value
+                In-Memory & Storage Stub
               </span>
             </div>
             <p className="text-xs text-[#8b949e]">
-              Persistent vector embeddings, entity knowledge graph, and key-value state store.
+              Local client-side prototype store. (Demonstration stub using local storage; not a production cloud/HNSW vector DB).
             </p>
           </div>
         </div>
@@ -86,7 +86,7 @@ export const MemorySystemView: React.FC = () => {
       {/* Add Memory Form */}
       <div className="p-6 rounded-2xl bg-[#0d1117] border border-[#30363d] space-y-4">
         <h3 className="text-sm font-bold text-white flex items-center gap-2">
-          <Plus className="w-4 h-4 text-purple-400" /> Insert New Memory Embedding
+          <Plus className="w-4 h-4 text-purple-400" /> Insert Demo Memory Entry
         </h3>
 
         <form onSubmit={handleAddMemory} className="grid grid-cols-1 sm:grid-cols-4 gap-3">
@@ -94,7 +94,7 @@ export const MemorySystemView: React.FC = () => {
             type="text"
             value={newKey}
             onChange={(e) => setNewKey(e.target.value)}
-            placeholder="Key / Topic (e.g., tablet_screen_orientation)"
+            placeholder="Key / Topic (e.g., user_preferred_language)"
             className="px-4 py-2.5 bg-[#161b22] border border-[#30363d] rounded-xl text-xs font-mono text-white focus:outline-none focus:border-purple-500"
           />
 
@@ -111,16 +111,16 @@ export const MemorySystemView: React.FC = () => {
             onChange={(e) => setNewCategory(e.target.value as any)}
             className="px-4 py-2.5 bg-[#161b22] border border-[#30363d] rounded-xl text-xs font-mono text-white focus:outline-none focus:border-purple-500 cursor-pointer"
           >
-            <option value="vector">Vector Embedding</option>
-            <option value="entity">Entity Knowledge</option>
-            <option value="key-value">Key-Value Preference</option>
+            <option value="key-value">Key-Value (Local)</option>
+            <option value="entity">Entity (Simulated)</option>
+            <option value="vector">Vector Mock (Stub)</option>
           </select>
 
           <button
             type="submit"
             className="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 rounded-xl font-bold text-xs text-white flex items-center justify-center gap-2 transition-colors cursor-pointer"
           >
-            <Plus className="w-4 h-4" /> Insert Memory
+            <Plus className="w-4 h-4" /> Insert Entry
           </button>
         </form>
       </div>

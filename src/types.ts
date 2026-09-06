@@ -1,3 +1,15 @@
+export type AppView =
+  | 'workspace'
+  | 'chat'
+  | 'memory'
+  | 'modules'
+  | 'auth'
+  | 'settings'
+  | 'updates'
+  | 'hero'
+  | 'intro'
+  | 'setup';
+
 export interface UpdateRelease {
   id: string;
   version: string;

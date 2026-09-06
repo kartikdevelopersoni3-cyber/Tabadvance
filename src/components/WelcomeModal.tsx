@@ -30,27 +30,27 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({ isOpen, onBeginSetup
 
         {/* Title */}
         <h2 className="text-2xl font-bold tracking-tight text-white mb-2">
-          Welcome to Roohi
+          Welcome to Roohi [PROTOTYPE]
         </h2>
 
         {/* Subtitle */}
         <p className="text-sm text-[#8b949e] leading-relaxed mb-6">
-          Your AI Assistant OS Layer has been prepared and built-in modules are initialized.
+          Your AI Assistant OS Layer prototype has been prepared and built-in demo modules are initialized.
         </p>
 
         {/* Highlights */}
         <div className="bg-[#161b22] border border-[#30363d] rounded-xl p-4 text-left space-y-2.5 mb-8 text-xs text-[#c9d1d9]">
           <div className="flex items-center gap-2">
             <CheckCircle className="w-4 h-4 text-[#7ee787] shrink-0" />
-            <span>Modules A → Ω registered & connected</span>
+            <span>Modules A → Ω architecture matrix registered</span>
           </div>
           <div className="flex items-center gap-2">
             <CheckCircle className="w-4 h-4 text-[#7ee787] shrink-0" />
-            <span>On-device vector storage initialized</span>
+            <span>Local prototype storage initialized</span>
           </div>
           <div className="flex items-center gap-2">
             <CheckCircle className="w-4 h-4 text-[#7ee787] shrink-0" />
-            <span>Ready for personalized configuration</span>
+            <span>Ready for setup walkthrough</span>
           </div>
         </div>
 
@@ -59,7 +59,7 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({ isOpen, onBeginSetup
           onClick={onBeginSetup}
           className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg flex items-center justify-center gap-2 transition-all cursor-pointer group"
         >
-          Begin Setup <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          Begin Setup Walkthrough <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
       </motion.div>
     </div>

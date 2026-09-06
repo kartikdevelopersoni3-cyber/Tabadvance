@@ -16,19 +16,14 @@ export class AIProviderService {
     // Simulate network delay for real AI response experience
     await new Promise((resolve) => setTimeout(resolve, 800));
 
-    let responseText = '';
     const selectedModel = modelName || (
       provider === 'gemini' ? 'gemini-2.5-flash' :
       provider === 'openai' ? 'gpt-4o-mini' :
       provider === 'anthropic' ? 'claude-3-5-sonnet' : 'ollama-llama3'
     );
 
-    if (apiKey && apiKey.trim().length > 0) {
-      responseText = `[Connected to ${provider.toUpperCase()} API - Model: ${selectedModel}]\n\nProcessed query: "${prompt}".\n\nResult from Roohi OS Layer: Task executed with ground truth validation. Memory index updated.`;
-    } else {
-      // Fallback local OS response when API Key is pending
-      responseText = `[Roohi AI Engine - ${provider.toUpperCase()} Mode (Configured)]\n\nI received your query: "${prompt}".\n\n• System Module E (Multi-Agent Coordinator): Verified\n• Vector Memory C: Searched 14 records\n• Grounding: ${useGrounding ? 'Active' : 'Disabled'}\n\nTo enable full live model generation, enter your ${provider.toUpperCase()} API Key in the Settings Panel.`;
-    }
+    // Truthful demo simulation response - not connected to live external APIs
+    const responseText = `[DEMO / SIMULATED RESPONSE - NOT CONNECTED]\n\nSimulated Model: ${selectedModel} (${provider.toUpperCase()})\n\nPrompt: "${prompt}"\n\n• Roohi OS Pipeline: Executed in local prototype demonstration mode.\n• Module E (Multi-Agent Coordinator): Simulated sub-task routing.\n• Memory Retrieval: In-memory demo store query.\n• External AI API: NOT CONNECTED (Zero external paid API requirements for prototype demonstration).`;
 
     return {
       id: 'msg-' + Date.now(),

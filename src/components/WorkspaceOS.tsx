@@ -26,18 +26,18 @@ interface WorkspaceOSProps {
 }
 
 const MODULES_REGISTRY = [
-  { code: 'Module A', name: 'Voice & Wake Word', status: 'Active', desc: 'Continuous listener & speaker verification' },
-  { code: 'Module B', name: 'Conversation Engine', status: 'Active', desc: 'Dialogue management & turn handling' },
-  { code: 'Module C', name: 'Memory Engine', status: 'Active', desc: 'On-device vector embeddings & entity index' },
-  { code: 'Module D', name: 'Reasoning Engine', status: 'Active', desc: 'Step-by-step logic & problem decomposition' },
-  { code: 'Module E', name: 'Multi-Agent Coordinator', status: 'Active', desc: 'Task routing across sub-agent network' },
-  { code: 'Module F', name: 'Vision Engine', status: 'Active', desc: 'Real-time camera frame & screen analysis' },
-  { code: 'Module G', name: 'Automation Studio', status: 'Active', desc: 'Tablet gestures, apps & accessibility automation' },
-  { code: 'Module H', name: 'Learning Engine', status: 'Active', desc: 'User feedback & preference tuning' },
-  { code: 'Module I', name: 'Knowledge Graph', status: 'Active', desc: 'Structured relational facts & context' },
-  { code: 'Module J', name: 'Proactive Engine', status: 'Active', desc: 'Autonomous context-aware suggestions' },
-  { code: 'Module Workspace', name: 'Workspace OS', status: 'Active', desc: 'Multi-window tablet layout controller' },
-  { code: 'Module Ω', name: 'Evolution Engine', status: 'Active', desc: 'Self-modification & code enhancement' }
+  { code: 'Module A', name: 'Voice & Wake Word [SIMULATED]', status: 'Active', desc: 'Continuous listener & speaker verification [STUB]' },
+  { code: 'Module B', name: 'Conversation Engine [DEMO]', status: 'Active', desc: 'Dialogue management & turn handling simulation' },
+  { code: 'Module C', name: 'Memory Engine [LOCAL STUB]', status: 'Active', desc: 'In-memory & Web storage entity index (Not a vector DB)' },
+  { code: 'Module D', name: 'Reasoning Engine [PROTOTYPE]', status: 'Active', desc: 'Step-by-step logic & problem decomposition stub' },
+  { code: 'Module E', name: 'Multi-Agent Coordinator [SIMULATED]', status: 'Active', desc: 'Task routing across sub-agent network simulation' },
+  { code: 'Module F', name: 'Vision Engine [DEMO STUB]', status: 'Active', desc: 'Real-time camera frame & screen analysis stub' },
+  { code: 'Module G', name: 'Automation Studio [PROTOTYPE]', status: 'Active', desc: 'Tablet gestures, apps & accessibility automation specification' },
+  { code: 'Module H', name: 'Learning Engine [DEMO]', status: 'Active', desc: 'User feedback & preference tuning simulation' },
+  { code: 'Module I', name: 'Knowledge Graph [PROTOTYPE]', status: 'Active', desc: 'Structured relational facts & context store' },
+  { code: 'Module J', name: 'Proactive Engine [SIMULATED]', status: 'Active', desc: 'Autonomous context-aware suggestions simulation' },
+  { code: 'Module Workspace', name: 'Workspace OS [ACTIVE DEMO]', status: 'Active', desc: 'Multi-window tablet layout controller' },
+  { code: 'Module Ω', name: 'Evolution Engine [PROTOTYPE]', status: 'Active', desc: 'Self-modification & code enhancement architecture blueprint' }
 ];
 
 export const WorkspaceOS: React.FC<WorkspaceOSProps> = ({ setupConfig, onOpenSettings }) => {
@@ -47,7 +47,7 @@ export const WorkspaceOS: React.FC<WorkspaceOSProps> = ({ setupConfig, onOpenSet
     {
       id: 1,
       sender: 'roohi',
-      text: `Hello! I am Roohi, your AI Assistant OS Layer. I am operating in ${setupConfig.aiMode.toUpperCase()} mode with wake word "${setupConfig.voiceSetup.wakeWord}". How can I assist your workspace today?`,
+      text: `[DEMO PROTOTYPE INITIALIZED]\n\nHello! I am Roohi, your AI Assistant OS Layer prototype. Operating in ${setupConfig.aiMode.toUpperCase()} mode with simulated wake word "${setupConfig.voiceSetup.wakeWord}". External APIs are not connected in this prototype demonstration.`,
       timestamp: '01:10 AM'
     }
   ]);
@@ -64,6 +64,7 @@ export const WorkspaceOS: React.FC<WorkspaceOSProps> = ({ setupConfig, onOpenSet
     };
 
     setMessages(prev => [...prev, userMsg]);
+    const submittedText = inputText;
     setInputText('');
 
     // Simulate AI Assistant response
@@ -71,7 +72,7 @@ export const WorkspaceOS: React.FC<WorkspaceOSProps> = ({ setupConfig, onOpenSet
       const aiResponse = {
         id: Date.now() + 1,
         sender: 'roohi',
-        text: `Executing command across Module E (Multi-Agent Coordinator) and Module C (Memory Engine). Task processed successfully using ${setupConfig.cloudConfig.provider.toUpperCase()} provider.`,
+        text: `[SIMULATED RESPONSE]\n\nCommand received: "${submittedText}". Simulated execution routed to Module E and local memory store. Note: External model provider (${setupConfig.cloudConfig.provider.toUpperCase()}) is NOT CONNECTED in prototype demo mode.`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
       setMessages(prev => [...prev, aiResponse]);
@@ -185,29 +186,29 @@ export const WorkspaceOS: React.FC<WorkspaceOSProps> = ({ setupConfig, onOpenSet
           {/* Active Engines Counter */}
           <div className="bg-[#0d1117] border border-[#30363d] rounded-2xl p-5 space-y-4">
             <div className="flex items-center justify-between border-b border-[#30363d] pb-3">
-              <span className="text-xs font-bold text-white uppercase tracking-wider">System Telemetry</span>
+              <span className="text-xs font-bold text-white uppercase tracking-wider">System Telemetry [SIMULATED]</span>
               <Activity className="w-4 h-4 text-emerald-400 animate-pulse" />
             </div>
 
             <div className="grid grid-cols-2 gap-3 text-xs">
               <div className="p-3 bg-[#161b22] border border-[#30363d] rounded-xl">
                 <div className="text-[10px] text-[#8b949e]">Registered Modules</div>
-                <div className="text-base font-bold text-emerald-400">14 / 14</div>
+                <div className="text-base font-bold text-emerald-400">14 (Prototype)</div>
               </div>
               <div className="p-3 bg-[#161b22] border border-[#30363d] rounded-xl">
                 <div className="text-[10px] text-[#8b949e]">Vector Memory</div>
-                <div className="text-base font-bold text-blue-400">Active (HNSW)</div>
+                <div className="text-sm font-bold text-blue-400">Simulated Stub</div>
               </div>
               <div className="p-3 bg-[#161b22] border border-[#30363d] rounded-xl">
                 <div className="text-[10px] text-[#8b949e]">Voiceprint</div>
-                <div className="text-base font-bold text-rose-400">
-                  {setupConfig.voiceSetup.isEnrolled ? 'Enrolled ✓' : 'Default'}
+                <div className="text-sm font-bold text-rose-400">
+                  Simulated Stub
                 </div>
               </div>
               <div className="p-3 bg-[#161b22] border border-[#30363d] rounded-xl">
                 <div className="text-[10px] text-[#8b949e]">AI Provider</div>
-                <div className="text-base font-bold text-amber-400 uppercase">
-                  {setupConfig.cloudConfig.provider}
+                <div className="text-sm font-bold text-amber-400 uppercase">
+                  Not Connected (Demo)
                 </div>
               </div>
             </div>

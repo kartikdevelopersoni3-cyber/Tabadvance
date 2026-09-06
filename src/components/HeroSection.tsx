@@ -18,8 +18,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStartActivation, onO
 
         <div className="relative z-10 max-w-3xl mx-auto text-center space-y-6">
           {/* OS Layer Tag */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-mono font-bold uppercase tracking-wider">
-            <Layers className="w-4 h-4 animate-pulse" /> AI Assistant OS Layer • v1.0.4 Native
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono font-bold uppercase tracking-wider">
+            <Layers className="w-4 h-4" /> AI Assistant OS Layer Prototype • Demo Release
           </div>
 
           {/* Hero Title */}
@@ -29,7 +29,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStartActivation, onO
 
           {/* Subtitle */}
           <p className="text-base sm:text-lg text-[#8b949e] leading-relaxed max-w-2xl mx-auto">
-            Transform your Android tablet into an intelligent AI workspace. Install the Roohi OS Layer once and unlock voice assistance, automation, memory, knowledge, and future AI capabilities from one platform.
+            Transform your Android tablet into an intelligent AI workspace. Explore the Roohi OS Layer architecture demonstration featuring voice assistance stubs, simulated multi-agent routing, local memory, and full modular specifications.
           </p>
 
           {/* Primary Action Button */}
@@ -63,9 +63,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStartActivation, onO
           <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
             <Mic className="w-5 h-5" />
           </div>
-          <h3 className="font-bold text-base text-white">Voice & Conversation</h3>
+          <h3 className="font-bold text-base text-white">Voice & Conversation [SIMULATED]</h3>
           <p className="text-xs text-[#8b949e] leading-relaxed">
-            Continuous wake word listener ("Hey Roohi") with biometric speaker verification and real-time speech processing.
+            Continuous wake word listener ("Hey Roohi") with biometric speaker verification stub and simulated speech processing.
           </p>
         </div>
 
@@ -73,9 +73,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStartActivation, onO
           <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
             <Cpu className="w-5 h-5" />
           </div>
-          <h3 className="font-bold text-base text-white">Multi-Engine Intelligence</h3>
+          <h3 className="font-bold text-base text-white">Multi-Engine Intelligence [SPECIFICATION]</h3>
           <p className="text-xs text-[#8b949e] leading-relaxed">
-            14 autonomous system modules (Modules A → Ω) for memory indexing, reasoning, automation studio, and vision.
+            14 autonomous system modules (Modules A → Ω) for memory indexing, reasoning, automation studio, and vision prototypes.
           </p>
         </div>
 
@@ -83,9 +83,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onStartActivation, onO
           <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
             <ShieldCheck className="w-5 h-5" />
           </div>
-          <h3 className="font-bold text-base text-white">Privacy First</h3>
+          <h3 className="font-bold text-base text-white">Privacy & Modularity [DEMO]</h3>
           <p className="text-xs text-[#8b949e] leading-relaxed">
-            Choose between 100% on-device offline models, cloud API access, or a smart hybrid configuration.
+            Modular architecture supporting offline templates or cloud models. (External APIs NOT CONNECTED in prototype demonstration).
           </p>
         </div>
       </div>

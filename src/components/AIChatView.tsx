@@ -13,7 +13,7 @@ export const AIChatView: React.FC<AIChatViewProps> = ({ setupConfig, onOpenSetti
     {
       id: 'msg-welcome',
       sender: 'roohi',
-      text: `Welcome to Roohi AI Chat Interface! Currently initialized with provider "${setupConfig.cloudConfig.provider.toUpperCase()}". How can I assist your tablet workspace today?`,
+      text: `[DEMO / SIMULATED CHAT]\n\nWelcome to Roohi AI Chat Interface! Currently operating in local prototype demonstration mode with provider template "${setupConfig.cloudConfig.provider.toUpperCase()}". How can I assist your tablet workspace today?`,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       tokens: 28,
       model: setupConfig.cloudConfig.modelName || 'gemini-2.5-flash',
@@ -88,12 +88,12 @@ export const AIChatView: React.FC<AIChatViewProps> = ({ setupConfig, onOpenSetti
           <div>
             <h2 className="font-bold text-base text-white flex items-center gap-2">
               Roohi AI Chat Interface
-              <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-800/40 text-emerald-400 font-mono font-bold uppercase">
-                {selectedProvider}
+              <span className="text-[10px] px-2 py-0.5 rounded bg-amber-950/60 border border-amber-800/40 text-amber-400 font-mono font-bold uppercase">
+                DEMO • {selectedProvider} (SIMULATED)
               </span>
             </h2>
             <p className="text-xs text-[#8b949e]">
-              Multi-model cloud interface with grounding & vector memory integration
+              Prototype chat interface • [SIMULATED RESPONSES — NOT CONNECTED TO PAID APIS]
             </p>
           </div>
         </div>

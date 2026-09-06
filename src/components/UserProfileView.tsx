@@ -36,13 +36,13 @@ export const UserProfileView: React.FC = () => {
           <div>
             <div className="flex items-center gap-2">
               <h2 className="text-xl font-bold text-white">{profile.name}</h2>
-              <span className="px-2.5 py-0.5 rounded bg-blue-950/60 border border-blue-800/40 text-blue-400 text-[10px] font-mono font-bold uppercase">
-                {profile.authProvider} OAuth Verified
+              <span className="px-2.5 py-0.5 rounded bg-amber-950/60 border border-amber-800/40 text-amber-400 text-[10px] font-mono font-bold uppercase">
+                DEMO PROFILE • {profile.authProvider} (SIMULATED)
               </span>
             </div>
             <p className="text-xs text-[#8b949e] font-mono">{profile.email}</p>
-            <div className="mt-1 flex items-center gap-2 text-[11px] text-emerald-400 font-mono">
-              <ShieldCheck className="w-3.5 h-3.5" /> Session Active • Token ID: #TK-89104
+            <div className="mt-1 flex items-center gap-2 text-[11px] text-blue-400 font-mono">
+              <ShieldCheck className="w-3.5 h-3.5" /> Demo Session Active • Mock ID: #TK-89104 [STUB]
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@ export const UserProfileView: React.FC = () => {
           className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-xs flex items-center gap-2 shadow-lg cursor-pointer transition-colors"
         >
           <RefreshCw className={`w-4 h-4 ${isSyncing ? 'animate-spin' : ''}`} />
-          {isSyncing ? 'Syncing to Cloud...' : 'Sync Cloud Backup Now'}
+          {isSyncing ? 'Simulating Sync...' : 'Test Mock Sync [DEMO]'}
         </button>
       </div>
 
@@ -62,18 +62,18 @@ export const UserProfileView: React.FC = () => {
         {/* Cloud Sync Controller */}
         <div className="p-6 rounded-2xl bg-[#0d1117] border border-[#30363d] space-y-4">
           <h3 className="text-sm font-bold text-white flex items-center gap-2">
-            <Cloud className="w-4 h-4 text-blue-400" /> Cloud Sync Infrastructure
+            <Cloud className="w-4 h-4 text-blue-400" /> Cloud Sync Infrastructure [STUB]
           </h3>
 
           <p className="text-xs text-[#8b949e] leading-relaxed">
-            Encrypted state & vector memory backup to remote cloud storage. Keeps tablet workspace synchronized across modern web browsers.
+            Demonstration of state & vector memory backup interface. (Simulated local storage mock; not connected to live cloud storage).
           </p>
 
           <div className="p-4 bg-[#161b22] border border-[#30363d] rounded-xl flex items-center justify-between">
             <div>
-              <div className="font-bold text-xs text-white">Automatic Cloud Sync</div>
+              <div className="font-bold text-xs text-white">Simulated Cloud Sync</div>
               <div className="text-[10px] font-mono text-[#8b949e]">
-                Last synced: {profile.lastSyncedAt}
+                Last mock sync: {profile.lastSyncedAt}
               </div>
             </div>
 
@@ -85,7 +85,7 @@ export const UserProfileView: React.FC = () => {
                   : 'bg-[#21262d] border border-[#30363d] text-[#8b949e]'
               }`}
             >
-              {profile.cloudSyncEnabled ? 'ENABLED ✓' : 'DISABLED'}
+              {profile.cloudSyncEnabled ? 'MOCK ENABLED' : 'MOCK DISABLED'}
             </button>
           </div>
         </div>
@@ -93,21 +93,21 @@ export const UserProfileView: React.FC = () => {
         {/* Security & Authentication Abstraction */}
         <div className="p-6 rounded-2xl bg-[#0d1117] border border-[#30363d] space-y-4">
           <h3 className="text-sm font-bold text-white flex items-center gap-2">
-            <Lock className="w-4 h-4 text-emerald-400" /> Authentication Abstraction
+            <Lock className="w-4 h-4 text-emerald-400" /> Authentication Abstraction [DEMO]
           </h3>
 
           <p className="text-xs text-[#8b949e] leading-relaxed">
-            Abstracted JWT token verification layer. Connects seamlessly with Google OAuth, Firebase Auth, Supabase, or custom REST endpoints.
+            Prototype JWT token verification interface. Built as an architectural blueprint ready to connect to Google OAuth, Firebase Auth, or custom auth services.
           </p>
 
           <div className="space-y-2 text-xs font-mono">
             <div className="p-3 bg-[#161b22] border border-[#30363d] rounded-xl flex justify-between">
-              <span className="text-[#8b949e]">OAuth Provider:</span>
-              <span className="text-white font-bold uppercase">{profile.authProvider}</span>
+              <span className="text-[#8b949e]">OAuth Provider Status:</span>
+              <span className="text-amber-400 font-bold uppercase">NOT CONNECTED (DEMO MOCK)</span>
             </div>
             <div className="p-3 bg-[#161b22] border border-[#30363d] rounded-xl flex justify-between">
-              <span className="text-[#8b949e]">Security Status:</span>
-              <span className="text-emerald-400 font-bold">256-bit AES Encrypted</span>
+              <span className="text-[#8b949e]">Production Authentication:</span>
+              <span className="text-blue-400 font-bold">Stub Implementation</span>
             </div>
           </div>
         </div>

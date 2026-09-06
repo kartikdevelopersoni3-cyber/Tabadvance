@@ -3,20 +3,20 @@ import { Cpu, Power, Activity, HardDrive, Zap, Layers, RefreshCw } from 'lucide-
 import { ModuleItem } from '../types';
 
 const INITIAL_MODULES: ModuleItem[] = [
-  { code: 'Module A', name: 'Voice & Wake Word Listener', status: 'Active', desc: 'Continuous 16kHz audio buffer & speaker verification', latencyMs: 12, memoryUsageMb: 48, enabled: true },
-  { code: 'Module B', name: 'Conversation Dialogue Manager', status: 'Active', desc: 'Context stack & conversation turn router', latencyMs: 24, memoryUsageMb: 36, enabled: true },
-  { code: 'Module C', name: 'Vector Memory Index Engine', status: 'Active', desc: 'On-device HNSW vector index & semantic retrieval', latencyMs: 8, memoryUsageMb: 112, enabled: true },
-  { code: 'Module D', name: 'Reasoning & Logic Decomposition', status: 'Active', desc: 'Step-by-step logic planner & sub-goal manager', latencyMs: 45, memoryUsageMb: 84, enabled: true },
-  { code: 'Module E', name: 'Multi-Agent Network Coordinator', status: 'Active', desc: 'Task delegation DAG across sub-agents', latencyMs: 15, memoryUsageMb: 62, enabled: true },
-  { code: 'Module F', name: 'Vision Frame & Screen Analyzer', status: 'Active', desc: 'Camera frame analysis & tablet screen parsing', latencyMs: 65, memoryUsageMb: 140, enabled: true },
-  { code: 'Module G', name: 'Automation Studio & Touch Gestures', status: 'Active', desc: 'Tablet gesture synthesis & accessibility automation', latencyMs: 18, memoryUsageMb: 32, enabled: true },
-  { code: 'Module H', name: 'Preference & Learning Engine', status: 'Active', desc: 'Adaptive feedback loop & user habit tuning', latencyMs: 10, memoryUsageMb: 28, enabled: true },
-  { code: 'Module I', name: 'Knowledge Graph Relational Facts', status: 'Active', desc: 'Structured entity relational store', latencyMs: 14, memoryUsageMb: 76, enabled: true },
-  { code: 'Module J', name: 'Proactive Context Suggestions', status: 'Active', desc: 'Autonomous context-triggered recommendations', latencyMs: 30, memoryUsageMb: 44, enabled: true },
-  { code: 'Module Workspace', name: 'Workspace OS Multi-Window', status: 'Active', desc: 'Multi-window layout manager & focus router', latencyMs: 6, memoryUsageMb: 22, enabled: true },
-  { code: 'Module Cloud Sync', name: 'Cloud Sync Engine', status: 'Active', desc: 'Encrypted cloud backup & state synchronization', latencyMs: 85, memoryUsageMb: 50, enabled: true },
-  { code: 'Module Auth', name: 'User Authentication Abstraction', status: 'Active', desc: 'JWT token abstraction & permission guard', latencyMs: 4, memoryUsageMb: 16, enabled: true },
-  { code: 'Module Ω', name: 'Evolution & Self-Correction Engine', status: 'Active', desc: 'Self-inspection & runtime patch manager', latencyMs: 50, memoryUsageMb: 95, enabled: true }
+  { code: 'Module A', name: 'Voice & Wake Word Listener [SIMULATED]', status: 'Active', desc: 'Continuous 16kHz audio buffer & speaker verification stub', latencyMs: 12, memoryUsageMb: 48, enabled: true },
+  { code: 'Module B', name: 'Conversation Dialogue Manager [DEMO]', status: 'Active', desc: 'Context stack & conversation turn router simulation', latencyMs: 24, memoryUsageMb: 36, enabled: true },
+  { code: 'Module C', name: 'Vector Memory Index Engine [STUB]', status: 'Active', desc: 'In-memory prototype index (Not production vector DB)', latencyMs: 8, memoryUsageMb: 112, enabled: true },
+  { code: 'Module D', name: 'Reasoning & Logic Decomposition [PROTOTYPE]', status: 'Active', desc: 'Step-by-step logic planner & sub-goal manager architecture', latencyMs: 45, memoryUsageMb: 84, enabled: true },
+  { code: 'Module E', name: 'Multi-Agent Network Coordinator [SIMULATED]', status: 'Active', desc: 'Task delegation DAG across sub-agents simulation', latencyMs: 15, memoryUsageMb: 62, enabled: true },
+  { code: 'Module F', name: 'Vision Frame & Screen Analyzer [SIMULATED STUB]', status: 'Active', desc: 'Camera frame analysis & screen parsing prototype stub', latencyMs: 65, memoryUsageMb: 140, enabled: true },
+  { code: 'Module G', name: 'Automation Studio & Touch Gestures [PROTOTYPE]', status: 'Active', desc: 'Tablet gesture synthesis & accessibility automation blueprint', latencyMs: 18, memoryUsageMb: 32, enabled: true },
+  { code: 'Module H', name: 'Preference & Learning Engine [DEMO]', status: 'Active', desc: 'Adaptive feedback loop & user habit tuning prototype', latencyMs: 10, memoryUsageMb: 28, enabled: true },
+  { code: 'Module I', name: 'Knowledge Graph Relational Facts [PROTOTYPE]', status: 'Active', desc: 'Structured entity relational store blueprint', latencyMs: 14, memoryUsageMb: 76, enabled: true },
+  { code: 'Module J', name: 'Proactive Context Suggestions [SIMULATED]', status: 'Active', desc: 'Context-triggered recommendations prototype', latencyMs: 30, memoryUsageMb: 44, enabled: true },
+  { code: 'Module Workspace', name: 'Workspace OS Multi-Window [ACTIVE DEMO]', status: 'Active', desc: 'Multi-window layout manager & focus router', latencyMs: 6, memoryUsageMb: 22, enabled: true },
+  { code: 'Module Cloud Sync', name: 'Cloud Sync Engine [NOT CONNECTED]', status: 'Active', desc: 'Simulated cloud backup & state synchronization stub', latencyMs: 85, memoryUsageMb: 50, enabled: true },
+  { code: 'Module Auth', name: 'User Authentication Abstraction [DEMO STUB]', status: 'Active', desc: 'JWT token abstraction & permission guard prototype', latencyMs: 4, memoryUsageMb: 16, enabled: true },
+  { code: 'Module Ω', name: 'Evolution & Self-Correction Engine [PROTOTYPE]', status: 'Active', desc: 'Architecture specification for self-inspection & patches', latencyMs: 50, memoryUsageMb: 95, enabled: true }
 ];
 
 export const ModuleManagerView: React.FC = () => {
@@ -49,21 +49,21 @@ export const ModuleManagerView: React.FC = () => {
           </div>
           <div>
             <h2 className="text-xl font-bold text-white flex items-center gap-2">
-              Roohi Module Manager (Modules A → Ω)
+              Roohi Module Architecture Matrix (Modules A → Ω)
             </h2>
             <p className="text-xs text-[#8b949e]">
-              Manage autonomous OS layer modules, toggle status, and inspect runtime metrics.
+              Prototype architecture matrix • [SIMULATED STATUS & METRICS — PROTOTYPE SPECIFICATION]
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-4 text-xs font-mono">
           <div className="p-3 bg-[#161b22] border border-[#30363d] rounded-xl text-center">
-            <div className="text-[10px] text-[#8b949e]">Active Modules</div>
+            <div className="text-[10px] text-[#8b949e]">Modules (Prototype)</div>
             <div className="text-sm font-bold text-emerald-400">{activeCount} / {modules.length}</div>
           </div>
           <div className="p-3 bg-[#161b22] border border-[#30363d] rounded-xl text-center">
-            <div className="text-[10px] text-[#8b949e]">Memory Footprint</div>
+            <div className="text-[10px] text-[#8b949e]">Simulated Memory</div>
             <div className="text-sm font-bold text-purple-400">{totalMemory} MB</div>
           </div>
         </div>

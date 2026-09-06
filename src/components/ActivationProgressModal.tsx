@@ -81,8 +81,8 @@ export const ActivationProgressModal: React.FC<ActivationProgressModalProps> = (
               <Download className="w-5 h-5 animate-bounce" />
             </div>
             <div>
-              <h3 className="font-bold text-sm text-white">Activating Roohi OS Layer</h3>
-              <p className="text-xs text-[#8b949e]">Automatic single-button installation flow</p>
+              <h3 className="font-bold text-sm text-white">Activating Roohi OS Layer [SIMULATED FLOW]</h3>
+              <p className="text-xs text-[#8b949e]">Demonstration of automated installation sequence</p>
             </div>
           </div>
           <span className="px-2.5 py-1 rounded bg-[#21262d] text-[#58a6ff] border border-[#30363d] text-[10px] font-mono font-bold">

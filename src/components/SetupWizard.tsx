@@ -129,7 +129,7 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse" />
             <span className="text-xs font-mono font-bold tracking-wider text-white uppercase">
-              Roohi Setup Guide • Step {currentStep} of 7
+              Roohi Setup Guide [PROTOTYPE] • Step {currentStep} of 7
             </span>
           </div>
           <span className="text-xs text-[#8b949e]">
@@ -365,8 +365,8 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
                   <Key className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold">Step 4: Cloud AI Configuration</h3>
-                  <p className="text-xs text-[#8b949e]">Select your model provider and verify API connection credentials.</p>
+                  <h3 className="text-xl font-bold">Step 4: Cloud AI Configuration [DEMO TEMPLATE]</h3>
+                  <p className="text-xs text-[#8b949e]">Select your model provider interface. (External AI APIs are NOT CONNECTED in prototype mode).</p>
                 </div>
               </div>
 
@@ -459,7 +459,7 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
                     onClick={handleTestConnection}
                     className="px-4 py-2 bg-[#21262d] hover:bg-[#30363d] border border-[#30363d] text-white text-xs font-bold rounded-xl transition-all cursor-pointer"
                   >
-                    Test Connection
+                    Test Connection [SIMULATION]
                   </button>
                 </div>
               </div>
@@ -480,15 +480,15 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
                   <Mic className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold">Step 5: Voice Setup & Enrollment</h3>
-                  <p className="text-xs text-[#8b949e]">Customize wake word detection and enroll your biometric speaker profile.</p>
+                  <h3 className="text-xl font-bold">Step 5: Voice Setup & Enrollment [SIMULATION]</h3>
+                  <p className="text-xs text-[#8b949e]">Select wake word keyword and test simulated biometric speaker enrollment stub.</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Wake Word Card */}
                 <div className="p-5 rounded-2xl bg-[#161b22] border border-[#30363d] space-y-3">
-                  <label className="text-xs font-bold text-[#8b949e] uppercase block">Wake Word Keyword</label>
+                  <label className="text-xs font-bold text-[#8b949e] uppercase block">Wake Word Keyword [DEMO]</label>
                   {['Hey Roohi', 'Roohi Assistant', 'Computer'].map(word => (
                     <button
                       key={word}
@@ -513,9 +513,9 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
                 {/* Speaker Enrollment Card */}
                 <div className="p-5 rounded-2xl bg-[#161b22] border border-[#30363d] flex flex-col justify-between">
                   <div>
-                    <label className="text-xs font-bold text-[#8b949e] uppercase block mb-1">Biometric Speaker Profile</label>
+                    <label className="text-xs font-bold text-[#8b949e] uppercase block mb-1">Biometric Speaker Profile [STUB]</label>
                     <p className="text-xs text-[#8b949e] leading-relaxed mb-4">
-                      Record a 2-second voice phrase so Roohi exclusively responds to your specific voiceprint.
+                      Simulate voice enrollment to demonstrate user profile configuration in demo mode.
                     </p>
                   </div>
 
@@ -646,9 +646,9 @@ export const SetupWizard: React.FC<SetupWizardProps> = ({ onComplete }) => {
               </div>
 
               <div>
-                <h3 className="text-2xl font-bold text-white mb-2">Roohi is now ready.</h3>
+                <h3 className="text-2xl font-bold text-white mb-2">Roohi Prototype Ready.</h3>
                 <p className="text-xs text-[#8b949e] max-w-md mx-auto leading-relaxed">
-                  Your AI Assistant OS Layer preferences have been saved and applied to your workspace environment.
+                  Your AI Assistant OS Layer demo preferences have been saved to local state.
                 </p>
               </div>
 

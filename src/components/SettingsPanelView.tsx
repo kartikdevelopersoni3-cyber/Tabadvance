@@ -35,9 +35,9 @@ export const SettingsPanelView: React.FC<SettingsPanelViewProps> = ({ setupConfi
             <Settings className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-white">Roohi OS System & API Settings</h2>
+            <h2 className="text-xl font-bold text-white">Roohi OS System & API Settings [DEMO CONFIGURATION]</h2>
             <p className="text-xs text-[#8b949e]">
-              Configure cloud model providers, API keys, wake word, and workspace preferences.
+              Configure prototype model providers, wake word, and workspace preferences. (No paid API keys required for prototype demonstration).
             </p>
           </div>
         </div>
@@ -55,10 +55,10 @@ export const SettingsPanelView: React.FC<SettingsPanelViewProps> = ({ setupConfi
         <div className="border-b border-[#30363d] pb-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Key className="w-5 h-5 text-amber-400" />
-            <h3 className="font-bold text-base text-white">AI Provider Configuration</h3>
+            <h3 className="font-bold text-base text-white">AI Provider Configuration [DEMO TEMPLATES]</h3>
           </div>
-          <span className="text-xs font-mono text-emerald-400 font-bold bg-emerald-950/60 px-2.5 py-1 rounded border border-emerald-800/40">
-            Zero Hardcoded Credentials Mode
+          <span className="text-xs font-mono text-amber-400 font-bold bg-amber-950/60 px-2.5 py-1 rounded border border-amber-800/40">
+            NOT CONNECTED • Prototype Demo Mode
           </span>
         </div>
 
@@ -163,13 +163,13 @@ export const SettingsPanelView: React.FC<SettingsPanelViewProps> = ({ setupConfi
             disabled={isTesting}
             className="px-5 py-2.5 bg-[#161b22] hover:bg-[#21262d] border border-[#30363d] rounded-xl text-xs font-bold text-white flex items-center gap-2 cursor-pointer transition-colors"
           >
-            {isTesting ? <RefreshCw className="w-4 h-4 animate-spin text-blue-400" /> : <Server className="w-4 h-4 text-emerald-400" />}
-            Test Provider Connection
+            {isTesting ? <RefreshCw className="w-4 h-4 animate-spin text-blue-400" /> : <Server className="w-4 h-4 text-amber-400" />}
+            Test Provider Connection [SIMULATION]
           </button>
 
           {testSuccess === true && (
-            <span className="text-xs font-mono text-emerald-400 font-bold flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4" /> Connection Handshake Verified (200 OK)
+            <span className="text-xs font-mono text-amber-400 font-bold flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4" /> [SIMULATED TEST] Handshake simulated • Note: External AI provider is NOT CONNECTED in prototype mode
             </span>
           )}
         </div>

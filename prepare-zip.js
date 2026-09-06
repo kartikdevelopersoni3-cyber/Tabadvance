@@ -128,6 +128,7 @@ masterApkZip.writeZip(path.join(exportsDir, 'Roohi_APK.zip'));
 masterApkZip.writeZip(path.join(exportsDir, 'Roohi_AI_OS.zip'));
 masterApkZip.writeZip(path.join(exportsDir, 'Update_Runtime.zip'));
 masterApkZip.writeZip(path.join(exportsDir, 'Documentation.zip'));
+masterApkZip.writeZip(path.join(exportsDir, 'demosoldproject.zip'));
 
 masterApkZip.writeZip(path.join(publicDir, 'roohi_apk.zip'));
 masterApkZip.writeZip(path.join(publicDir, 'Roohi_APK.zip'));
@@ -136,12 +137,19 @@ masterApkZip.writeZip(path.join(publicDir, 'Roohi_VoltBuilder_Package.zip'));
 masterApkZip.writeZip(path.join(publicDir, 'Roohi_AI_OS.zip'));
 masterApkZip.writeZip(path.join(publicDir, 'Update_Runtime.zip'));
 masterApkZip.writeZip(path.join(publicDir, 'Documentation.zip'));
+masterApkZip.writeZip(path.join(publicDir, 'demosoldproject.zip'));
+
+// Write deliverable to root project directory
+const rootZipPath = path.join(rootDir, 'demosoldproject.zip');
+masterApkZip.writeZip(rootZipPath);
 
 const apkStats = fs.statSync(mainApkPath);
+const demoStats = fs.statSync(rootZipPath);
 
 console.log(
   JSON.stringify({
+    demosoldprojectZip: 'demosoldproject.zip (' + (demoStats.size / 1024 / 1024).toFixed(2) + ' MB)',
     roohiApkZip: 'roohi_apk.zip (' + (apkStats.size / 1024 / 1024).toFixed(2) + ' MB)',
-    status: 'Master Unified APK & Full Project ZIP Created Successfully at /public/roohi_apk.zip'
+    status: 'Master Unified Project ZIP Created Successfully at /demosoldproject.zip and /public/demosoldproject.zip'
   })
 );

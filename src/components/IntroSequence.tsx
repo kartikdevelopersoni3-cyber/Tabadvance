@@ -10,7 +10,7 @@ interface IntroSequenceProps {
 const SCREENS = [
   {
     id: 1,
-    badge: "OS Layer Overview",
+    badge: "Prototype OS Overview",
     title: "Your Tablet. Smarter Than Ever.",
     subtitle: "An AI operating layer designed to assist, automate, and learn seamlessly across all workflows.",
     icon: Tablet,
@@ -52,7 +52,7 @@ const SCREENS = [
   },
   {
     id: 4,
-    badge: "Ready to Deploy",
+    badge: "Prototype Exploration",
     title: "Ready to Begin?",
     subtitle: "Tap Download & Activate to install the AI Assistant OS Layer and initialize your personalized workspace.",
     icon: Sparkles,
